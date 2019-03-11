@@ -1,6 +1,6 @@
 package cr.ac.cenfotec.proyecto;
 
-public class Go extends Game {
+public class Checker extends Game {
 
 	@Override
 	public void fillBoard() {
