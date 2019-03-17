@@ -1,6 +1,6 @@
-package cr.ac.cenfotec.proyecto;
+package proyecto.juego;
 
-public abstract class Game {
+public abstract class Juego {
 
 	public abstract void fillBoard();
 

@@ -1,4 +1,4 @@
-package cr.ac.cenfotec.proyecto;
+package proyecto.piezas;
 
 public enum CheckerType {
 

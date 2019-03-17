@@ -1,4 +1,6 @@
-package cr.ac.cenfotec.proyecto;
+package proyecto.juego;
+
+import proyecto.piezas.CheckerType;
 
 public class Cell {
 

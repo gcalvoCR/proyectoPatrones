@@ -1,6 +1,6 @@
-package cr.ac.cenfotec.proyecto;
+package proyecto.juego;
 
-public class Checker extends Game {
+public class Damas extends Juego {
 
 	@Override
 	public void fillBoard() {

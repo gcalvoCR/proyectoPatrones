@@ -1,9 +1,11 @@
-package cr.ac.cenfotec.proyecto;
+package proyecto.juego;
 
-public class Board extends Game {
+import proyecto.piezas.CheckerType;
 
-	private static final int ROWS = 8;
-	private static final int COLUMNS = 8;
+public class Board extends Juego {
+
+	private final int ROWS = 8;
+	private final int COLUMNS = 8;
 
 	private Cell[][] board;
 
@@ -87,7 +89,6 @@ public class Board extends Game {
 
 	@Override
 	public void movePiece() {
-		// TODO Auto-generated method stub
 
 	}
 
