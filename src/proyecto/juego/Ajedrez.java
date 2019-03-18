@@ -1,6 +1,6 @@
 package proyecto.juego;
 
-public class Go implements Juego {
+public class Ajedrez implements Juego {
 
 	@Override
 	public void fillBoard() {

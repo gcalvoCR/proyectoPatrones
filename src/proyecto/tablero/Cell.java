@@ -1,10 +1,10 @@
-package proyecto.juego;
+package proyecto.tablero;
 
-import proyecto.piezas.CheckerType;
+import proyecto.enums.TipoPiezasDamas;
 
 public class Cell {
 
-	private CheckerType checker;
+	private TipoPiezasDamas checker;
 	private boolean ocupado;
 	private int x, y;
 
@@ -38,11 +38,11 @@ public class Cell {
 		this.y = y;
 	}
 
-	public CheckerType getChecker() {
+	public TipoPiezasDamas getChecker() {
 		return checker;
 	}
 
-	public void setChecker(CheckerType checker) {
+	public void setChecker(TipoPiezasDamas checker) {
 		this.checker = checker;
 	}
 

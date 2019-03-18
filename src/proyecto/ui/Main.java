@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
-import proyecto.controlador.Controller;
+import proyecto.controlador.ControllerJuego;
+import proyecto.enums.TipoJuegos;
 
 public class Main {
 
@@ -68,6 +69,10 @@ public class Main {
 			registrarJugador();
 			break;
 
+		case 5:
+			reproducirPartida();
+			break;
+
 		case 0:
 			noSalir = false;
 			break;
@@ -81,25 +86,62 @@ public class Main {
 		return noSalir;
 	}
 
+	private static void reproducirPartida() {
+		// TODO Auto-generated method stub
+
+	}
+
 	private static void registrarJugador() {
 		// TODO Auto-generated method stub
 
 	}
 
-	private static void jugarGo() {
-		// TODO Auto-generated method stub
+	private static void jugarGo() throws IOException {
+		ControllerJuego controller = new ControllerJuego();
+		controller.iniciarPartida(TipoJuegos.GO);
+		jugar();
 
 	}
 
-	private static void jugarTablero() {
-		Controller controller = new Controller();
-		controller.iniciarPartida();
+	private static void jugarTablero() throws IOException {
+		ControllerJuego controller = new ControllerJuego();
+		controller.iniciarPartida(TipoJuegos.DAMAS);
+		jugar();
 
 	}
 
-	private static void jugarAjedrez() {
-		// not implemented
+	private static void jugarAjedrez() throws IOException {
+		ControllerJuego controller = new ControllerJuego();
+		controller.iniciarPartida(TipoJuegos.AJEDREZ);
+		jugar();
 
+	}
+
+	public static void jugar() throws IOException {
+		String opc;
+		boolean noSalir = true;
+
+		do {
+			mostrarMenu();
+			opc = movida();
+			noSalir = verificarGanador(opc);
+		} while (noSalir);
+	}
+
+	public static String movida() throws java.io.IOException {
+
+		String opcion;
+
+		out.print("Ingrese su movimiento: ");
+		opcion = in.readLine();
+		out.println();
+
+		return opcion;
+	}
+
+	static boolean verificarGanador(String movida) throws java.io.IOException {
+
+		return true;
 	}
 
 }

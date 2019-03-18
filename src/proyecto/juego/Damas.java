@@ -1,6 +1,6 @@
 package proyecto.juego;
 
-public class Damas extends Juego {
+public class Damas implements Juego {
 
 	@Override
 	public void fillBoard() {

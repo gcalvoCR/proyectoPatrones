@@ -1,14 +1,15 @@
 package proyecto.piezas;
 
-import proyecto.utilidades.Jugador;
+import proyecto.enums.TipoPiezasAjedrez;
+import proyecto.jugador.Jugador;
 
 public class Alfil extends Piece {
 
-	Tipos type;
+	TipoPiezasAjedrez type;
 
 	public Alfil(int x, int y, Jugador pjugador) {
 		super(x, y, pjugador);
-		type = Tipos.ALFIL;
+		type = TipoPiezasAjedrez.ALFIL;
 	}
 
 	@Override
@@ -25,8 +26,8 @@ public class Alfil extends Piece {
 	}
 
 	@Override
-	public Tipos getType() {
-		return Tipos.ALFIL;
+	public TipoPiezasAjedrez getType() {
+		return TipoPiezasAjedrez.ALFIL;
 	}
 
 }

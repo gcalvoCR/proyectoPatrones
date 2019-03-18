@@ -1,6 +1,7 @@
 package proyecto.piezas;
 
-import proyecto.utilidades.Jugador;
+import proyecto.enums.TipoPiezasAjedrez;
+import proyecto.jugador.Jugador;
 
 public abstract class Piece {
 
@@ -23,6 +24,6 @@ public abstract class Piece {
 
 	public abstract int[][] movePiece(int initialX, int initialY, int finalX, int finalY);
 
-	public abstract Tipos getType();
+	public abstract TipoPiezasAjedrez getType();
 
 }

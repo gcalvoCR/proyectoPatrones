@@ -1,10 +1,10 @@
 package proyecto.juego;
 
-public abstract class Juego {
+public interface Juego {
 
-	public abstract void fillBoard();
+	public void fillBoard();
 
-	public abstract void movePiece();
+	public void movePiece();
 
 	// Define imprimirTablero()
 

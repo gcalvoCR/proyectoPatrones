@@ -1,6 +1,7 @@
 package proyecto.piezas;
 
-import proyecto.utilidades.Jugador;
+import proyecto.enums.TipoPiezasAjedrez;
+import proyecto.jugador.Jugador;
 
 public class Torre extends Piece {
 
@@ -22,7 +23,7 @@ public class Torre extends Piece {
 	}
 
 	@Override
-	public Tipos getType() {
+	public TipoPiezasAjedrez getType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

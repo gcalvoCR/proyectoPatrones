@@ -1,8 +1,8 @@
-package proyecto.juego;
+package proyecto.tablero;
 
-import proyecto.piezas.CheckerType;
+import proyecto.enums.TipoPiezasDamas;
 
-public class Board extends Juego {
+public class Board {
 
 	private final int ROWS = 8;
 	private final int COLUMNS = 8;
@@ -18,10 +18,9 @@ public class Board extends Juego {
 		}
 	}
 
-	@Override
 	public void fillBoard() {
-		CheckerType Black = CheckerType.BLACK;
-		CheckerType Red = CheckerType.RED;
+		TipoPiezasDamas Black = TipoPiezasDamas.BLACK;
+		TipoPiezasDamas Red = TipoPiezasDamas.RED;
 		for (int i = 0; i < ROWS; i++) {
 			for (int j = 0; j < COLUMNS; j++) {
 				if (board[i][0].getX() == 0 || board[i][0].getX() == 2) {
@@ -87,7 +86,6 @@ public class Board extends Juego {
 		return output.toString();
 	}
 
-	@Override
 	public void movePiece() {
 
 	}
