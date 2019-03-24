@@ -1,11 +1,17 @@
 package proyecto.juego;
 
-public interface Juego {
+import java.util.ArrayList;
 
-	public void fillBoard();
+import proyecto.piezas.Pieza;
+import proyecto.tablero.Tablero;
 
-	public void movePiece();
+public abstract class Juego {
 
-	// Define imprimirTablero()
+	protected Tablero tablero;
+	protected ArrayList<Pieza> piezas;
+
+	public abstract void fillBoard();
+
+	public abstract void movePiece(int initialX, int initialY, int finalX, int finalY);
 
 }

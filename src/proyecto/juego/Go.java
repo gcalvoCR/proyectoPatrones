@@ -1,6 +1,6 @@
 package proyecto.juego;
 
-public class Go implements Juego {
+public class Go extends Juego {
 
 	@Override
 	public void fillBoard() {
@@ -9,7 +9,7 @@ public class Go implements Juego {
 	}
 
 	@Override
-	public void movePiece() {
+	public void movePiece(int initialX, int initialY, int finalX, int finalY) {
 		// TODO Auto-generated method stub
 
 	}

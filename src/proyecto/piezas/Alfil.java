@@ -3,7 +3,7 @@ package proyecto.piezas;
 import proyecto.enums.TipoPiezasAjedrez;
 import proyecto.jugador.Jugador;
 
-public class Alfil extends Piece {
+public class Alfil extends Pieza {
 
 	TipoPiezasAjedrez type;
 

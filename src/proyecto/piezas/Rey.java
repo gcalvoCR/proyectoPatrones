@@ -3,7 +3,7 @@ package proyecto.piezas;
 import proyecto.enums.TipoPiezasAjedrez;
 import proyecto.jugador.Jugador;
 
-public class Rey extends Piece {
+public class Rey extends Pieza {
 
 	public Rey(int px, int py, Jugador pjugador) {
 		super(px, py, pjugador);

@@ -3,7 +3,7 @@ package proyecto.piezas;
 import proyecto.enums.TipoPiezasAjedrez;
 import proyecto.jugador.Jugador;
 
-public abstract class Piece {
+public abstract class Pieza {
 
 	// Tiene posicion
 
@@ -14,7 +14,7 @@ public abstract class Piece {
 	public int x, y;
 	public Jugador jugador;
 
-	public Piece(int px, int py, Jugador pjugador) {
+	public Pieza(int px, int py, Jugador pjugador) {
 		x = px;
 		y = py;
 		jugador = pjugador;

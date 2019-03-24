@@ -12,6 +12,8 @@ public class Main {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
+	public static ControllerJuego controller;
+	static String jugador;
 
 	public static void main(String[] args) throws IOException {
 		int opc;
@@ -30,7 +32,7 @@ public class Main {
 		out.println();
 		out.println("Oprima la opcion que desee:");
 		out.println("1.  Jugar ajedrez");
-		out.println("2.  Jugar tablero");
+		out.println("2.  Jugar damas");
 		out.println("3.  Jugar go");
 		out.println("4.  Registrar jugador");
 		out.println("0.  Salir");
@@ -58,7 +60,7 @@ public class Main {
 			break;
 
 		case 2:
-			jugarTablero();
+			jugarDamas();
 			break;
 
 		case 3:
@@ -97,51 +99,73 @@ public class Main {
 	}
 
 	private static void jugarGo() throws IOException {
-		ControllerJuego controller = new ControllerJuego();
-		controller.iniciarPartida(TipoJuegos.GO);
+		controller = new ControllerJuego(TipoJuegos.GO);
+		jugador = "A";
 		jugar();
 
 	}
 
-	private static void jugarTablero() throws IOException {
-		ControllerJuego controller = new ControllerJuego();
-		controller.iniciarPartida(TipoJuegos.DAMAS);
+	private static void jugarDamas() throws IOException {
+		controller = new ControllerJuego(TipoJuegos.DAMAS);
+		jugador = "A";
 		jugar();
 
 	}
 
 	private static void jugarAjedrez() throws IOException {
-		ControllerJuego controller = new ControllerJuego();
-		controller.iniciarPartida(TipoJuegos.AJEDREZ);
+		controller = new ControllerJuego(TipoJuegos.AJEDREZ);
+		jugador = "A";
 		jugar();
 
 	}
 
 	public static void jugar() throws IOException {
-		String opc;
-		boolean noSalir = true;
+		String puntoInicial, puntoFinal;
+		boolean ganador = false;
 
 		do {
-			mostrarMenu();
-			opc = movida();
-			noSalir = verificarGanador(opc);
-		} while (noSalir);
+			puntoInicial = movidaInicial();
+			puntoFinal = movidaFinal();
+			ganador = verificarGanador(puntoInicial, puntoFinal);
+		} while (!(ganador));
 	}
 
-	public static String movida() throws java.io.IOException {
+	public static String movidaInicial() throws java.io.IOException {
 
-		String opcion;
+		String movida;
 
-		out.print("Ingrese su movimiento: ");
-		opcion = in.readLine();
+		out.println("Jugador " + jugador);
+		out.println(" Ingrese posicion de pieza inicial");
+		movida = in.readLine();
+
+		return movida;
+	}
+
+	public static String movidaFinal() throws java.io.IOException {
+
+		String movida;
+
+		out.println(" Ingrese posicion de pieza final");
+		movida = in.readLine();
 		out.println();
 
-		return opcion;
+		return movida;
 	}
 
-	static boolean verificarGanador(String movida) throws java.io.IOException {
+	private static boolean verificarGanador(String puntoInicial, String puntoFinal) throws java.io.IOException {
+		boolean ganador = false;
+		ganador = controller.jugar(puntoInicial, puntoFinal, jugador);
+		changeJugador();
+		return ganador;
+	}
 
-		return true;
+	private static void changeJugador() {
+		if (jugador.equals("A")) {
+			jugador = "B";
+		} else if (jugador.equals("B")) {
+			jugador = "A";
+		}
+
 	}
 
 }
