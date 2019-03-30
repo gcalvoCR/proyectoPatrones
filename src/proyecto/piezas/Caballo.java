@@ -1,13 +1,14 @@
 package proyecto.piezas;
 
-import proyecto.enums.TipoPiezasAjedrez;
+import proyecto.enums.Colores;
+import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 
 public class Caballo extends Pieza {
 
-	public Caballo(int px, int py, Jugador pjugador) {
-		super(px, py, pjugador);
-		// TODO Auto-generated constructor stub
+	public Caballo(int x, int y, Jugador pjugador, Colores color) {
+		super(x, y, pjugador, color);
+		type = TipoPiezas.CABALLO;
 	}
 
 	@Override
@@ -23,9 +24,8 @@ public class Caballo extends Pieza {
 	}
 
 	@Override
-	public TipoPiezasAjedrez getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public String toString() {
+		return color.toString().charAt(0) + "C";
 	}
 
 }
