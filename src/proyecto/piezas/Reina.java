@@ -4,18 +4,17 @@ import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 
-public class Alfil extends Pieza {
+public class Reina extends Pieza {
 
-	public Alfil(int x, int y, Jugador pjugador, Colores color) {
+	public Reina(int x, int y, Jugador pjugador, Colores color) {
 		super(x, y, pjugador, color);
-		type = TipoPiezas.ALFIL;
+		type = TipoPiezas.REINA;
 	}
 
 	@Override
 	public boolean isValidMovement(int finalX, int finalY) {
-		int diffX = Math.abs(finalX - this.x);
-		int diffY = Math.abs(finalY - this.y);
-		return diffX == diffY;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -24,13 +23,9 @@ public class Alfil extends Pieza {
 		return null;
 	}
 
-	public Jugador getJugador() {
-		return jugador;
-	}
-
 	@Override
 	public String toString() {
-		return color.toString().charAt(0) + "A";
+		return color.toString().charAt(0) + "Q";
 	}
 
 }

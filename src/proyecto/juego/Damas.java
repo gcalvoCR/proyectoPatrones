@@ -2,9 +2,11 @@ package proyecto.juego;
 
 import java.util.ArrayList;
 
+import proyecto.Fabrica.FabricaPiezas;
+import proyecto.enums.Colores;
+import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 import proyecto.piezas.Pieza;
-import proyecto.piezas.PiezaTablero;
 import proyecto.tablero.Tablero;
 
 public class Damas extends Juego {
@@ -20,31 +22,32 @@ public class Damas extends Juego {
 		Jugador jugadorB = new Jugador("jugadorB", "B");
 
 		// para jugador A
-		tablero.getCelda(0, 1).setPieza(new PiezaTablero(0, 1, jugadorA));
-		tablero.getCelda(0, 3).setPieza(new PiezaTablero(0, 3, jugadorA));
-		tablero.getCelda(0, 5).setPieza(new PiezaTablero(0, 5, jugadorA));
-		tablero.getCelda(0, 7).setPieza(new PiezaTablero(0, 7, jugadorA));
-		tablero.getCelda(2, 1).setPieza(new PiezaTablero(2, 1, jugadorA));
-		tablero.getCelda(2, 3).setPieza(new PiezaTablero(2, 3, jugadorA));
-		tablero.getCelda(2, 5).setPieza(new PiezaTablero(2, 5, jugadorA));
-		tablero.getCelda(2, 7).setPieza(new PiezaTablero(2, 7, jugadorA));
-		tablero.getCelda(1, 0).setPieza(new PiezaTablero(1, 0, jugadorA));
-		tablero.getCelda(1, 2).setPieza(new PiezaTablero(1, 2, jugadorA));
-		tablero.getCelda(1, 4).setPieza(new PiezaTablero(1, 4, jugadorA));
-		tablero.getCelda(1, 6).setPieza(new PiezaTablero(1, 6, jugadorA));
+		tablero.getCelda(0, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 0, 1, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 0, 3, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 0, 5, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 0, 7, jugadorA, Colores.BLANCO));
+		tablero.getCelda(2, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 2, 1, jugadorA, Colores.BLANCO));
+		tablero.getCelda(2, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 2, 3, jugadorA, Colores.BLANCO));
+		tablero.getCelda(2, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 2, 5, jugadorA, Colores.BLANCO));
+		tablero.getCelda(2, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 2, 7, jugadorA, Colores.BLANCO));
+		tablero.getCelda(1, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 1, 0, jugadorA, Colores.BLANCO));
+		tablero.getCelda(1, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 1, 2, jugadorA, Colores.BLANCO));
+		tablero.getCelda(1, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 1, 4, jugadorA, Colores.BLANCO));
+		tablero.getCelda(1, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 1, 6, jugadorA, Colores.BLANCO));
+
 		// para jugador B
-		tablero.getCelda(6, 1).setPieza(new PiezaTablero(6, 1, jugadorB));
-		tablero.getCelda(6, 3).setPieza(new PiezaTablero(6, 3, jugadorB));
-		tablero.getCelda(6, 5).setPieza(new PiezaTablero(6, 5, jugadorB));
-		tablero.getCelda(6, 7).setPieza(new PiezaTablero(6, 7, jugadorB));
-		tablero.getCelda(5, 0).setPieza(new PiezaTablero(5, 0, jugadorB));
-		tablero.getCelda(5, 2).setPieza(new PiezaTablero(5, 2, jugadorB));
-		tablero.getCelda(5, 4).setPieza(new PiezaTablero(5, 4, jugadorB));
-		tablero.getCelda(5, 6).setPieza(new PiezaTablero(5, 6, jugadorB));
-		tablero.getCelda(7, 0).setPieza(new PiezaTablero(7, 0, jugadorB));
-		tablero.getCelda(7, 2).setPieza(new PiezaTablero(7, 2, jugadorB));
-		tablero.getCelda(7, 4).setPieza(new PiezaTablero(7, 4, jugadorB));
-		tablero.getCelda(7, 6).setPieza(new PiezaTablero(7, 6, jugadorB));
+		tablero.getCelda(6, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 6, 1, jugadorB, Colores.NEGRO));
+		tablero.getCelda(6, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 6, 3, jugadorB, Colores.NEGRO));
+		tablero.getCelda(6, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 6, 5, jugadorB, Colores.NEGRO));
+		tablero.getCelda(6, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 6, 7, jugadorB, Colores.NEGRO));
+		tablero.getCelda(5, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 5, 0, jugadorB, Colores.NEGRO));
+		tablero.getCelda(5, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 5, 2, jugadorB, Colores.NEGRO));
+		tablero.getCelda(5, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 5, 4, jugadorB, Colores.NEGRO));
+		tablero.getCelda(5, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 5, 6, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 7, 0, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 7, 2, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 7, 4, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, 7, 6, jugadorB, Colores.NEGRO));
 	}
 
 	@Override
@@ -58,9 +61,9 @@ public class Damas extends Juego {
 	public String toString() {
 
 		StringBuilder output = new StringBuilder();
-		output.append("     0   1   2   3   4   5   6   7  ");
+		output.append("      0    1    2    3    4    5    6    7  ");
 		output.append("\n");
-		output.append("   ---------------------------------");
+		output.append("   -----------------------------------------");
 		output.append("\n");
 
 		for (int x = 0; x < tablero.getRows(); x++) {
@@ -95,13 +98,13 @@ public class Damas extends Juego {
 
 			for (int y = 0; y < tablero.getColumns(); y++) {
 				if (tablero.getCelda(x, y).getPieza() == null) {
-					output.append("   |");
+					output.append("    |");
 				} else {
-					output.append(" " + tablero.getCelda(x, y).getPieza().jugador.getUsername() + " |");
+					output.append(" " + tablero.getCelda(x, y).getPieza().toString() + " |");
 				}
 			}
 			output.append("\n");
-			output.append("   ---------------------------------");
+			output.append("   -----------------------------------------");
 			output.append("\n");
 		}
 

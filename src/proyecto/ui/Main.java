@@ -122,20 +122,40 @@ public class Main {
 	public static void jugar() throws IOException {
 		String puntoInicial, puntoFinal;
 		boolean ganador = false;
+		boolean salir = false;
 
 		do {
 			puntoInicial = movidaInicial();
+			salir = verificarSalir(puntoInicial);
+			if (salir) {
+				break;
+			}
 			puntoFinal = movidaFinal();
+			salir = verificarSalir(puntoFinal);
+			if (salir) {
+				break;
+			}
 			ganador = verificarGanador(puntoInicial, puntoFinal);
 		} while (!(ganador));
+	}
+
+	private static boolean verificarSalir(String salir) {
+		if (salir.equals("0")) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	public static String movidaInicial() throws java.io.IOException {
 
 		String movida;
 
-		out.println("Jugador " + jugador);
-		out.println(" Ingrese posicion de pieza inicial");
+		out.println("Jugador " + jugador + "        (oprima 0 para salir del juego)");
+		out.println("------------------------------------------------");
+		out.println("Ingrese la posicion inicial");
+		out.println();
 		movida = in.readLine();
 
 		return movida;
@@ -145,7 +165,9 @@ public class Main {
 
 		String movida;
 
-		out.println(" Ingrese posicion de pieza final");
+		out.println("Jugador " + jugador + "        (oprima 0 para salir del juego)");
+		out.println("------------------------------------------------");
+		out.println("Ingrese la posicion final");
 		movida = in.readLine();
 		out.println();
 
