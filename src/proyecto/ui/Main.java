@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import proyecto.controlador.ControllerJuego;
 import proyecto.enums.TipoJuegos;
 
-//This was done by Gabriel 
+//This was done as a base for the project by Gabriel
 public class Main {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +25,6 @@ public class Main {
 			opc = leerOpcion();
 			noSalir = ejecutarAccion(opc);
 		} while (noSalir);
-
 	}
 
 	static void mostrarMenu() {
