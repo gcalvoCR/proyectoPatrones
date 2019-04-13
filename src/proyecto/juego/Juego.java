@@ -9,9 +9,15 @@ public abstract class Juego {
 
 	protected Tablero tablero;
 	protected ArrayList<Pieza> piezas;
+	protected String ganador = "";
 
 	public abstract void fillBoard();
 
 	public abstract void movePiece(int initialX, int initialY, int finalX, int finalY);
 
+	public abstract boolean validateWinner();
+
+	public String getGanador() {
+		return ganador;
+	}
 }

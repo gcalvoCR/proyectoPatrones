@@ -134,7 +134,7 @@ public class Main {
 			if (salir) {
 				break;
 			}
-			ganador = verificarGanador(puntoInicial, puntoFinal);
+			ganador = moverPieza(puntoInicial, puntoFinal);
 		} while (!(ganador));
 	}
 
@@ -173,11 +173,16 @@ public class Main {
 		return movida;
 	}
 
-	private static boolean verificarGanador(String puntoInicial, String puntoFinal) throws java.io.IOException {
-		boolean ganador = false;
-		ganador = controller.jugar(puntoInicial, puntoFinal, jugador);
-		changeJugador();
-		return ganador;
+	private static boolean moverPieza(String puntoInicial, String puntoFinal) throws java.io.IOException {
+
+		controller.jugar(puntoInicial, puntoFinal, jugador);
+
+		if (!(controller.validarGanador())) {
+			changeJugador();
+			return false;
+		}
+		System.out.println(controller.getGanador());
+		return true;
 	}
 
 	private static void changeJugador() {

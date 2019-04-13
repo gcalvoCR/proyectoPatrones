@@ -14,4 +14,10 @@ public class Go extends Juego {
 
 	}
 
+	@Override
+	public boolean validateWinner() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

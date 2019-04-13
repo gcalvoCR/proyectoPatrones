@@ -1,11 +1,16 @@
 package proyecto.tablero;
 
+import java.util.ArrayList;
+
+import proyecto.piezas.Pieza;
+
 public class Tablero {
 
 	private int rows = 8;
 	private int columns = 8;
 
 	private Celda[][] celdas;
+	ArrayList<Pieza> piezas;
 
 	public Tablero(int filas, int columnas) {
 		rows = filas;
@@ -16,6 +21,17 @@ public class Tablero {
 				celdas[x][y] = new Celda(x, y);
 			}
 		}
+	}
+
+	public ArrayList<Pieza> getPiezas() {
+		return piezas;
+	}
+
+	public void putPieza(Pieza pieza) {
+		if (piezas == null) {
+			piezas = new ArrayList<Pieza>();
+		}
+		piezas.add(pieza);
 	}
 
 	public int getRows() {

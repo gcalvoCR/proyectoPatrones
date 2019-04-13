@@ -15,7 +15,7 @@ public class ControllerJuego {
 		System.out.println(juego.toString());
 	}
 
-	public boolean jugar(String puntoInicial, String puntoFinal, String jugador) {
+	public void jugar(String puntoInicial, String puntoFinal, String jugador) {
 
 		char charInitialX = puntoInicial.charAt(0);
 		char charInitialY = puntoInicial.charAt(1);
@@ -36,7 +36,13 @@ public class ControllerJuego {
 		juego.movePiece(initialX, initialY, finalX, finalY);
 		System.out.println(juego.toString());
 
-		return false;
 	}
 
+	public boolean validarGanador() {
+		return juego.validateWinner();
+	}
+
+	public String getGanador() {
+		return juego.getGanador();
+	}
 }
