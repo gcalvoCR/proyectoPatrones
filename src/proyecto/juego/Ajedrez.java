@@ -22,36 +22,38 @@ public class Ajedrez extends Juego {
 		Jugador jugadorB = new Jugador("jugadorB", "B");
 
 		// para jugador A
-		tablero.getCelda(0, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, 0, 0, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, 0, 1, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, 0, 2, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.REINA, 0, 3, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.REY, 0, 4, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, 0, 5, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, 0, 6, jugadorA, Colores.BLANCO));
-		tablero.getCelda(0, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, 0, 7, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.REINA, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.REY, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, jugadorA, Colores.BLANCO));
+		tablero.getCelda(0, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorA, Colores.BLANCO));
 		for (int i = 0; i < tablero.getRows(); i++) {
-			tablero.getCelda(1, i).setPieza(FabricaPiezas.getPieza(TipoPiezas.PEON, 1, i, jugadorA, Colores.BLANCO));
+			tablero.getCelda(1, i).setPieza(FabricaPiezas.getPieza(TipoPiezas.PEON, jugadorA, Colores.BLANCO));
 		}
 
 		// para jugador B
 		for (int i = 0; i < tablero.getRows(); i++) {
-			tablero.getCelda(6, i).setPieza(FabricaPiezas.getPieza(TipoPiezas.PEON, 1, i, jugadorB, Colores.NEGRO));
+			tablero.getCelda(6, i).setPieza(FabricaPiezas.getPieza(TipoPiezas.PEON, jugadorB, Colores.NEGRO));
 		}
-		tablero.getCelda(7, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, 7, 0, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, 7, 1, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, 7, 2, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.REINA, 7, 3, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.REY, 7, 4, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, 7, 5, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, 7, 6, jugadorB, Colores.NEGRO));
-		tablero.getCelda(7, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, 7, 7, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 1).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 2).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 3).setPieza(FabricaPiezas.getPieza(TipoPiezas.REINA, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 4).setPieza(FabricaPiezas.getPieza(TipoPiezas.REY, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 5).setPieza(FabricaPiezas.getPieza(TipoPiezas.ALFIL, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, jugadorB, Colores.NEGRO));
+		tablero.getCelda(7, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorB, Colores.NEGRO));
 
 	}
 
 	@Override
 	public void movePiece(int initialX, int initialY, int finalX, int finalY) {
-
+		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
+		tablero.getCelda(initialX, initialY).setPieza(null);
+		tablero.getCelda(finalX, finalY).setPieza(pieza);
 	}
 
 	@Override
@@ -106,6 +108,34 @@ public class Ajedrez extends Juego {
 		}
 
 		return output.toString();
+	}
+
+	@Override
+	public boolean validateWinner() {
+		boolean win = false;
+		ArrayList<Pieza> listaPiezas = new ArrayList();
+
+		for (int row = 0; row < tablero.getCeldas().length; row++) {
+			for (int col = tablero.getCeldas()[row].length - 1; col >= 0; col--) {
+				Pieza piezaX = tablero.getCeldas()[row][col].getPieza();
+				if (piezaX != null) {
+					listaPiezas.add(piezaX);
+				}
+			}
+		}
+
+		Pieza reyBlanco = FabricaPiezas.getPieza(TipoPiezas.REY, null, Colores.BLANCO);
+		Pieza reyNegro = FabricaPiezas.getPieza(TipoPiezas.REY, null, Colores.NEGRO);
+
+		if (!(listaPiezas.contains(reyBlanco))) {
+			win = true;
+			ganador = "Jugador B gano!";
+		} else if (!(listaPiezas.contains(reyNegro))) {
+			win = true;
+			ganador = "jugador A gano!";
+		}
+
+		return win;
 	}
 
 }
