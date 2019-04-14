@@ -35,6 +35,7 @@ public class Main {
 		out.println("3.  Jugar go");
 		out.println("4.  Registrar jugador");
 		out.println("0.  Salir");
+		out.println("☻");
 	}
 
 	static int leerOpcion() throws java.io.IOException {
@@ -191,7 +192,5 @@ public class Main {
 		} else if (jugador.equals("B")) {
 			jugador = "A";
 		}
-
 	}
-
 }

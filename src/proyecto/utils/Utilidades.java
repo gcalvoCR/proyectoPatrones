@@ -3,7 +3,8 @@ package proyecto.utils;
 public class Utilidades {
 
 	public static int getIntFromChar(char letra) {
-		switch (letra) {
+		char letter = Character.toUpperCase(letra);
+		switch (letter) {
 		case 'A':
 			return 0;
 		case 'B':
@@ -25,4 +26,5 @@ public class Utilidades {
 		}
 		return -1;
 	}
+
 }
