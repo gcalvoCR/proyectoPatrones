@@ -47,13 +47,23 @@ public class Ajedrez extends Juego {
 		tablero.getCelda(7, 6).setPieza(FabricaPiezas.getPieza(TipoPiezas.CABALLO, jugadorB, Colores.NEGRO));
 		tablero.getCelda(7, 7).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorB, Colores.NEGRO));
 
+		for (int row = 0; row < tablero.getCeldas().length; row++) {
+			for (int col = tablero.getCeldas()[row].length - 1; col >= 0; col--) {
+				Pieza piezaX = tablero.getCeldas()[row][col].getPieza();
+				if (piezaX != null) {
+					piezas.add(piezaX);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void movePiece(int initialX, int initialY, int finalX, int finalY) {
 		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 		tablero.getCelda(initialX, initialY).setPieza(null);
+		piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
 		tablero.getCelda(finalX, finalY).setPieza(pieza);
+
 	}
 
 	@Override
@@ -113,28 +123,17 @@ public class Ajedrez extends Juego {
 	@Override
 	public boolean validateWinner() {
 		boolean win = false;
-		ArrayList<Pieza> listaPiezas = new ArrayList();
-
-		for (int row = 0; row < tablero.getCeldas().length; row++) {
-			for (int col = tablero.getCeldas()[row].length - 1; col >= 0; col--) {
-				Pieza piezaX = tablero.getCeldas()[row][col].getPieza();
-				if (piezaX != null) {
-					listaPiezas.add(piezaX);
-				}
-			}
-		}
 
 		Pieza reyBlanco = FabricaPiezas.getPieza(TipoPiezas.REY, null, Colores.BLANCO);
 		Pieza reyNegro = FabricaPiezas.getPieza(TipoPiezas.REY, null, Colores.NEGRO);
 
-		if (!(listaPiezas.contains(reyBlanco))) {
+		if (!(piezas.contains(reyBlanco))) {
 			win = true;
 			ganador = "Jugador B gano!";
-		} else if (!(listaPiezas.contains(reyNegro))) {
+		} else if (!(piezas.contains(reyNegro))) {
 			win = true;
 			ganador = "jugador A gano!";
 		}
-
 		return win;
 	}
 
