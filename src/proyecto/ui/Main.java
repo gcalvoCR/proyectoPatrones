@@ -34,8 +34,10 @@ public class Main {
 		out.println("2.  Jugar damas");
 		out.println("3.  Jugar go");
 		out.println("4.  Registrar jugador");
+		out.println("5.  Enlistar jugadores");
+		out.println("6.  Elegir jugadores");
 		out.println("0.  Salir");
-		out.println("☻");
+		out.println();
 	}
 
 	static int leerOpcion() throws java.io.IOException {
@@ -77,6 +79,10 @@ public class Main {
 
 		case 0:
 			noSalir = false;
+			out.println("******************************");
+			out.println("Gracias por jugar, Arrivederci!");
+			out.println("******************************");
+			out.println();
 			break;
 
 		default:
@@ -120,11 +126,13 @@ public class Main {
 	}
 
 	public static void jugar() throws IOException {
+
 		String puntoInicial, puntoFinal;
 		boolean ganador = false;
 		boolean salir = false;
 
 		do {
+			imprimirTablero();
 			puntoInicial = movidaInicial();
 			salir = verificarSalir(puntoInicial);
 			if (salir) {
@@ -152,10 +160,7 @@ public class Main {
 
 		String movida;
 
-		out.println("Jugador " + jugador + "        (oprima 0 para salir del juego)");
-		out.println("------------------------------------------------");
-		out.println("Ingrese la posicion inicial");
-		out.println();
+		out.println("Jugador " + jugador + ", posicion inicial");
 		movida = in.readLine();
 
 		return movida;
@@ -165,32 +170,41 @@ public class Main {
 
 		String movida;
 
-		out.println("Jugador " + jugador + "        (oprima 0 para salir del juego)");
-		out.println("------------------------------------------------");
-		out.println("Ingrese la posicion final");
+		out.println("Jugador " + jugador + ", posicion final:");
 		movida = in.readLine();
-		out.println();
 
 		return movida;
 	}
 
-	private static boolean moverPieza(String puntoInicial, String puntoFinal) throws java.io.IOException {
+	public static boolean moverPieza(String puntoInicial, String puntoFinal) throws java.io.IOException {
 
-		controller.jugar(puntoInicial, puntoFinal, jugador);
+		boolean change;
+
+		change = controller.jugar(puntoInicial, puntoFinal, jugador);
 
 		if (!(controller.validarGanador())) {
-			changeJugador();
+			if (change) {
+				changeJugador();
+			} else {
+				System.out.println(controller.getMensaje());
+				System.out.println();
+			}
 			return false;
 		}
-		System.out.println(controller.getGanador());
+		System.out.println(controller.getMensaje());
+		System.out.println();
 		return true;
 	}
 
-	private static void changeJugador() {
+	public static void changeJugador() {
 		if (jugador.equals("A")) {
 			jugador = "B";
 		} else if (jugador.equals("B")) {
 			jugador = "A";
 		}
+	}
+
+	public static void imprimirTablero() {
+		out.println(controller.imprimirTablero());
 	}
 }

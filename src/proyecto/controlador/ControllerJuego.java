@@ -12,10 +12,9 @@ public class ControllerJuego {
 	public ControllerJuego(TipoJuegos pjuego) {
 		this.juego = FabricaJuego.getJuego(pjuego);
 		juego.fillBoard();
-		System.out.println(juego.toString());
 	}
 
-	public void jugar(String puntoInicial, String puntoFinal, String jugador) {
+	public boolean jugar(String puntoInicial, String puntoFinal, String jugador) {
 
 		char charInitialX = puntoInicial.charAt(0);
 		char charInitialY = puntoInicial.charAt(1);
@@ -31,10 +30,7 @@ public class ControllerJuego {
 		finalX = Utilidades.getIntFromChar(charFinalX);
 		finalY = Character.getNumericValue(charFinalY);
 
-		System.out.println("x: " + initialX + " y: " + initialY + "    x: " + finalX + " y: " + finalY);
-
-		juego.movePiece(initialX, initialY, finalX, finalY);
-		System.out.println(juego.toString());
+		return juego.movePiece(jugador, initialX, initialY, finalX, finalY);
 
 	}
 
@@ -42,7 +38,11 @@ public class ControllerJuego {
 		return juego.validateWinner();
 	}
 
-	public String getGanador() {
-		return juego.getGanador();
+	public String getMensaje() {
+		return juego.getMensaje();
+	}
+
+	public String imprimirTablero() {
+		return juego.toString();
 	}
 }

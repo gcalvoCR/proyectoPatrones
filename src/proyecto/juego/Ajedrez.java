@@ -58,12 +58,12 @@ public class Ajedrez extends Juego {
 	}
 
 	@Override
-	public void movePiece(int initialX, int initialY, int finalX, int finalY) {
+	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
 		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 		tablero.getCelda(initialX, initialY).setPieza(null);
 		piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
 		tablero.getCelda(finalX, finalY).setPieza(pieza);
-
+		return true;
 	}
 
 	@Override
@@ -129,10 +129,10 @@ public class Ajedrez extends Juego {
 
 		if (!(piezas.contains(reyBlanco))) {
 			win = true;
-			ganador = "Jugador B gano!";
+			mensaje = "Jugador B gano!";
 		} else if (!(piezas.contains(reyNegro))) {
 			win = true;
-			ganador = "jugador A gano!";
+			mensaje = "jugador A gano!";
 		}
 		return win;
 	}
