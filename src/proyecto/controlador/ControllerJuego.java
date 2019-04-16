@@ -12,7 +12,6 @@ public class ControllerJuego {
 	public ControllerJuego(TipoJuegos pjuego) {
 		this.juego = FabricaJuego.getJuego(pjuego);
 		juego.fillBoard();
-		System.out.println(juego.toString());
 	}
 
 	public boolean jugar(String puntoInicial, String puntoFinal, String jugador) {
@@ -31,12 +30,19 @@ public class ControllerJuego {
 		finalX = Utilidades.getIntFromChar(charFinalX);
 		finalY = Character.getNumericValue(charFinalY);
 
-		System.out.println("x: " + initialX + " y: " + initialY + "    x: " + finalX + " y: " + finalY);
+		return juego.movePiece(jugador, initialX, initialY, finalX, finalY);
 
-		juego.movePiece(initialX, initialY, finalX, finalY);
-		System.out.println(juego.toString());
-
-		return false;
 	}
 
+	public boolean validarGanador() {
+		return juego.validateWinner();
+	}
+
+	public String getMensaje() {
+		return juego.getMensaje();
+	}
+
+	public String imprimirTablero() {
+		return juego.toString();
+	}
 }

@@ -1,14 +1,23 @@
 package proyecto.jugador;
 
+import java.util.ArrayList;
+
+import proyecto.piezas.Pieza;
+
 public class Jugador {
 
 	private String nombre, username;
+<<<<<<< HEAD
 	
 	public Jugador() { }
+=======
+	ArrayList<Pieza> piezas;
+>>>>>>> origin/master
 
 	public Jugador(String pnombre, String pusername) {
 		nombre = pnombre;
 		username = pusername;
+
 	}
 
 	public String getNombre() {

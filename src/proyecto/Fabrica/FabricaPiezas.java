@@ -13,25 +13,24 @@ import proyecto.piezas.Rey;
 import proyecto.piezas.Torre;
 
 public class FabricaPiezas {
-	public static Pieza getPieza(TipoPiezas target, int x, int y, Jugador pjugador, Colores color) {
+	public static Pieza getPieza(TipoPiezas target, Jugador pjugador, Colores color) {
 		switch (target) {
 		case TORRE:
-			return new Torre(x, y, pjugador, color);
+			return new Torre(pjugador, color);
 		case ALFIL:
-			return new Alfil(x, y, pjugador, color);
+			return new Alfil(pjugador, color);
 		case CABALLO:
-			return new Caballo(x, y, pjugador, color);
+			return new Caballo(pjugador, color);
 		case REY:
-			return new Rey(x, y, pjugador, color);
+			return new Rey(pjugador, color);
 		case REINA:
-			return new Reina(x, y, pjugador, color);
+			return new Reina(pjugador, color);
 		case PEON:
-			return new Peon(x, y, pjugador, color);
+			return new Peon(pjugador, color);
 		case DAMA:
-			return new Dama(x, y, pjugador, color);
+			return new Dama(pjugador, color);
 		case DAMAREINA:
 			throw new RuntimeException("Not implemented yet");
-
 		default:
 			throw new RuntimeException("Unknown piece");
 		}
