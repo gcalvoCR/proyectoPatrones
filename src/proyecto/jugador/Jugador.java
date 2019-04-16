@@ -3,6 +3,8 @@ package proyecto.jugador;
 public class Jugador {
 
 	private String nombre, username;
+	
+	public Jugador() { }
 
 	public Jugador(String pnombre, String pusername) {
 		nombre = pnombre;
@@ -23,6 +25,11 @@ public class Jugador {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String toString() {
+		
+		return "Jugador: "+ this.getNombre() + " UserName: "+ getUsername();
 	}
 
 }
