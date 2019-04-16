@@ -2,56 +2,120 @@ package proyecto.juego;
 
 import java.util.ArrayList;
 
+import proyecto.Fabrica.FabricaPiezas;
+import proyecto.enums.Colores;
+import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 import proyecto.piezas.Pieza;
-import proyecto.piezas.PiezaTablero;
 import proyecto.tablero.Tablero;
 
 public class Damas extends Juego {
 
+	private Pieza patronDamaBlanca = FabricaPiezas.getPieza(TipoPiezas.DAMA, null, Colores.BLANCO);
+	private Pieza patronDamaNegra = FabricaPiezas.getPieza(TipoPiezas.DAMA, null, Colores.NEGRO);
+	private Jugador jugadorA = new Jugador("jugadorA", "A");
+	private Jugador jugadorB = new Jugador("jugadorB", "B");
+
 	public Damas() {
 		tablero = new Tablero(8, 8);
+		piezas = new ArrayList<Pieza>();
 	}
 
 	@Override
 	public void fillBoard() {
-		piezas = new ArrayList<Pieza>();
-		Jugador jugadorA = new Jugador("jugadorA", "A");
-		Jugador jugadorB = new Jugador("jugadorB", "B");
 
-		// para jugador A
-		tablero.getCelda(0, 1).setPieza(new PiezaTablero(0, 1, jugadorA));
-		tablero.getCelda(0, 3).setPieza(new PiezaTablero(0, 3, jugadorA));
-		tablero.getCelda(0, 5).setPieza(new PiezaTablero(0, 5, jugadorA));
-		tablero.getCelda(0, 7).setPieza(new PiezaTablero(0, 7, jugadorA));
-		tablero.getCelda(2, 1).setPieza(new PiezaTablero(2, 1, jugadorA));
-		tablero.getCelda(2, 3).setPieza(new PiezaTablero(2, 3, jugadorA));
-		tablero.getCelda(2, 5).setPieza(new PiezaTablero(2, 5, jugadorA));
-		tablero.getCelda(2, 7).setPieza(new PiezaTablero(2, 7, jugadorA));
-		tablero.getCelda(1, 0).setPieza(new PiezaTablero(1, 0, jugadorA));
-		tablero.getCelda(1, 2).setPieza(new PiezaTablero(1, 2, jugadorA));
-		tablero.getCelda(1, 4).setPieza(new PiezaTablero(1, 4, jugadorA));
-		tablero.getCelda(1, 6).setPieza(new PiezaTablero(1, 6, jugadorA));
-		// para jugador B
-		tablero.getCelda(6, 1).setPieza(new PiezaTablero(6, 1, jugadorB));
-		tablero.getCelda(6, 3).setPieza(new PiezaTablero(6, 3, jugadorB));
-		tablero.getCelda(6, 5).setPieza(new PiezaTablero(6, 5, jugadorB));
-		tablero.getCelda(6, 7).setPieza(new PiezaTablero(6, 7, jugadorB));
-		tablero.getCelda(5, 0).setPieza(new PiezaTablero(5, 0, jugadorB));
-		tablero.getCelda(5, 2).setPieza(new PiezaTablero(5, 2, jugadorB));
-		tablero.getCelda(5, 4).setPieza(new PiezaTablero(5, 4, jugadorB));
-		tablero.getCelda(5, 6).setPieza(new PiezaTablero(5, 6, jugadorB));
-		tablero.getCelda(7, 0).setPieza(new PiezaTablero(7, 0, jugadorB));
-		tablero.getCelda(7, 2).setPieza(new PiezaTablero(7, 2, jugadorB));
-		tablero.getCelda(7, 4).setPieza(new PiezaTablero(7, 4, jugadorB));
-		tablero.getCelda(7, 6).setPieza(new PiezaTablero(7, 6, jugadorB));
+		// definicion de posiciones originales para piezas blancas
+		int[] xBlancas = { 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2 };
+		int[] yBlancas = { 1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7 };
+		int[] xNegras = { 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7 };
+		int[] yNegras = { 0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6 };
+
+		// definicion de posiciones originales para piezas negras
+		int x = 0;
+		int y = 0;
+
+		// Setear piezas blancas (jugador A)
+		for (int i = 0; i < xBlancas.length; i++) {
+			x = xBlancas[i];
+			y = yBlancas[i];
+			tablero.getCelda(x, y).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, jugadorA, Colores.BLANCO));
+		}
+
+		// Setear piezas negras (jugador B)
+		for (int i = 0; i < xBlancas.length; i++) {
+			x = xNegras[i];
+			y = yNegras[i];
+			tablero.getCelda(x, y).setPieza(FabricaPiezas.getPieza(TipoPiezas.DAMA, jugadorB, Colores.NEGRO));
+		}
+
+		setArrayListPiezas();
+
+	}
+
+	// Almacenado de piezas en ArrayList de piezas
+	private void setArrayListPiezas() {
+
+		for (int x = 0; x < tablero.getCeldas().length; x++) {
+			for (int y = 0; y < tablero.getCeldas().length; y++) {
+				Pieza piezaX = tablero.getCeldas()[x][y].getPieza();
+				if (piezaX != null) {
+					piezas.add(piezaX);
+				}
+			}
+		}
+
 	}
 
 	@Override
-	public void movePiece(int initialX, int initialY, int finalX, int finalY) {
-		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
-		tablero.getCelda(initialX, initialY).setPieza(null);
-		tablero.getCelda(finalX, finalY).setPieza(pieza);
+	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
+
+		// Si el movimiento es valido mueve pieza
+		if (validateMovement(jugador, initialX, initialY, finalX, finalY)) {
+			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
+			tablero.getCelda(initialX, initialY).setPieza(null);
+			tablero.getCelda(finalX, finalY).setPieza(pieza);
+			return true;
+		} else {
+			mensaje = "El movimiento no es valido!";
+		}
+		return false;
+	}
+
+	private boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
+
+		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
+
+		// Valida si el jugador mueve sus piezas o las del oponente
+		if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
+			// validacion del movimiento de la pieza en si
+			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
+
+				Pieza piezaPosicionFinal = tablero.getCelda(finalX, finalY).getPieza();
+
+				// Validacion respecto a las demas piezas
+				// Si donde no tiene que saltar
+				if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 1) {
+					return true;
+				}
+
+				int piezaIntermediaX = (finalX + initialX) / 2;
+				int piezaIntermediaY = (finalY + initialY) / 2;
+
+				// Si tiene que saltar
+				if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 2) {
+					Pieza piezaIntermedia = tablero.getCelda(piezaIntermediaX, piezaIntermediaY).getPieza();
+					if (piezaIntermedia.equals(piezaPosicionInicial)) {
+						return false;
+					}
+					tablero.getCelda(piezaIntermediaX, piezaIntermediaY).setPieza(null);
+					piezas.remove(piezaIntermedia);
+					return true;
+				}
+			}
+		} else {
+			mensaje = "El jugador no puede mover piezas del oponente!";
+		}
+		return false;
 	}
 
 	@Override
@@ -97,15 +161,39 @@ public class Damas extends Juego {
 				if (tablero.getCelda(x, y).getPieza() == null) {
 					output.append("   |");
 				} else {
-					output.append(" " + tablero.getCelda(x, y).getPieza().jugador.getUsername() + " |");
+					if (tablero.getCelda(x, y).getPieza().equals(patronDamaNegra)) {
+						output.append(" " + "☻" + " |");
+					}
+					if (tablero.getCelda(x, y).getPieza().equals(patronDamaBlanca)) {
+						output.append(" " + "☺" + " |");
+					}
+
 				}
 			}
 			output.append("\n");
 			output.append("   ---------------------------------");
 			output.append("\n");
 		}
+		output.append("                  ** 0 para salir **");
+		output.append("\n");
 
 		return output.toString();
+	}
+
+	@Override
+	public boolean validateWinner() {
+
+		boolean win = false;
+
+		if (!(piezas.contains(patronDamaBlanca))) {
+			win = true;
+			mensaje = "Jugador B (negro) gano!";
+		} else if (!(piezas.contains(patronDamaNegra))) {
+			win = true;
+			mensaje = "jugador A (blanco) gano!";
+		}
+		return win;
+
 	}
 
 }

@@ -1,33 +1,30 @@
 package proyecto.piezas;
 
-import proyecto.enums.TipoPiezasAjedrez;
+import proyecto.enums.Colores;
+import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 
 public class Alfil extends Pieza {
 
-	TipoPiezasAjedrez type;
-
-	public Alfil(int x, int y, Jugador pjugador) {
-		super(x, y, pjugador);
-		type = TipoPiezasAjedrez.ALFIL;
+	public Alfil(Jugador pjugador, Colores color) {
+		super(pjugador, color);
+		type = TipoPiezas.ALFIL;
 	}
 
 	@Override
-	public boolean isValidMovement(int finalX, int finalY) {
-		int diffX = Math.abs(finalX - this.x);
-		int diffY = Math.abs(finalY - this.y);
+	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
+		int diffX = Math.abs(finalX - initialX);
+		int diffY = Math.abs(finalY - initialY);
 		return diffX == diffY;
 	}
 
-	@Override
-	public int[][] movePiece(int initialX, int initialY, int finalX, int finalY) {
-		// TODO Auto-generated method stub
-		return null;
+	public Jugador getJugador() {
+		return jugador;
 	}
 
 	@Override
-	public TipoPiezasAjedrez getType() {
-		return TipoPiezasAjedrez.ALFIL;
+	public String toString() {
+		return color.toString().charAt(0) + "A";
 	}
 
 }

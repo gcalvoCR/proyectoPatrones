@@ -4,16 +4,16 @@ import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
 
-public class Torre extends Pieza {
+public class Reina extends Pieza {
 
-	public Torre(Jugador pjugador, Colores color) {
+	public Reina(Jugador pjugador, Colores color) {
 		super(pjugador, color);
-		type = TipoPiezas.TORRE;
+		type = TipoPiezas.REINA;
 	}
 
 	@Override
 	public String toString() {
-		return color.toString().charAt(0) + "T";
+		return color.toString().charAt(0) + "Q";
 	}
 
 	@Override

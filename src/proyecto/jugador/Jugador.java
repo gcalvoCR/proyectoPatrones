@@ -1,12 +1,18 @@
 package proyecto.jugador;
 
+import java.util.ArrayList;
+
+import proyecto.piezas.Pieza;
+
 public class Jugador {
 
 	private String nombre, username;
+	ArrayList<Pieza> piezas;
 
 	public Jugador(String pnombre, String pusername) {
 		nombre = pnombre;
 		username = pusername;
+
 	}
 
 	public String getNombre() {
