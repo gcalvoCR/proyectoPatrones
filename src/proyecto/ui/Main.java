@@ -1,19 +1,26 @@
 package proyecto.ui;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import proyecto.controlador.ControllerJuego;
+import proyecto.controlador.ControllerJugador;
 import proyecto.enums.TipoJuegos;
+import proyecto.jugador.Jugador;
 
 public class Main {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
 	public static ControllerJuego controller;
+	public static ControllerJugador controllerJugador = new ControllerJugador();
 	static String jugador;
+	static String nombreA, userA, nombreB, userB;
+
 
 	public static void main(String[] args) throws IOException {
 		int opc;
@@ -74,9 +81,14 @@ public class Main {
 			break;
 
 		case 5:
-			reproducirPartida();
+			listarJugadores();
 			break;
-
+			
+		case 6:
+			listarJugadores();
+			elegirJugador();
+			break;
+			
 		case 0:
 			noSalir = false;
 			out.println("******************************");
@@ -94,36 +106,81 @@ public class Main {
 		return noSalir;
 	}
 
-	private static void reproducirPartida() {
-		// TODO Auto-generated method stub
 
+	private static void registrarJugador() throws IOException {
+		
+		
+		String nombre;
+		String username;
+				
+			out.println("Ingrese el nombre del jugador ");
+			nombre = (in.readLine());
+		
+			out.println("Ingrese el username ");
+			username = (in.readLine());
+	
+	
+		//if (controllerJugador.registroNuevoJugador(nombre, username))
+			controllerJugador.registroNuevoJugador(nombre, username);
+		out.println("Jugador registrado correctamente");
+		
 	}
-
-	private static void registrarJugador() {
-		// TODO Auto-generated method stub
-
+	
+	private static void listarJugadores() throws IOException {
+		
+		ArrayList <String> lista = controllerJugador.listarJugadores();
+		int i = 1;
+		for (String jugador : lista) {
+			out.println(i+ ") "+ jugador);
+			i++;
+		}
+		
+	}
+	
+	private static void elegirJugador() throws NumberFormatException, IOException {
+		
+		ArrayList<String> lista = controllerJugador.listarJugadores();
+	
+		out.println("Indique el número del Jugador que desea utilizar como Jugador A");
+		int num = Integer.parseInt(in.readLine());
+		
+		String usuario = lista.get(num-1);
+	       
+		nombreA = usuario.substring(0,usuario.indexOf(","));
+	    userA =  usuario.substring(usuario.indexOf(",")+1);
+	       
+		out.println("Indique el número del Jugador que desea utilizar como Jugador B");
+	
+		int num2 = Integer.parseInt(in.readLine());
+		
+		String usuario2 = lista.get(num2-1);
+	       
+		nombreB= usuario.substring(0,usuario.indexOf(","));
+	    userB =  usuario.substring(usuario.indexOf(",")+1);	
+			
 	}
 
 	private static void jugarGo() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.GO);
+		controller = new ControllerJuego(TipoJuegos.GO, nombreA, userA, nombreB, userB);
 		jugador = "A";
 		jugar();
 
 	}
 
 	private static void jugarDamas() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.DAMAS);
+		controller = new ControllerJuego(TipoJuegos.DAMAS, nombreA, userA, nombreB, userB);
 		jugador = "A";
 		jugar();
 
 	}
 
 	private static void jugarAjedrez() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.AJEDREZ);
+		controller = new ControllerJuego(TipoJuegos.AJEDREZ, nombreA, userA, nombreB, userB);
 		jugador = "A";
 		jugar();
 
 	}
+	
 
 	public static void jugar() throws IOException {
 
@@ -158,29 +215,40 @@ public class Main {
 
 	public static String movidaInicial() throws java.io.IOException {
 
-		String movida;
-
-		out.println("Jugador " + jugador + ", posicion inicial");
-		movida = in.readLine();
+		if (jugador.equals("A")) {
+			out.println("Jugador " + userA + ", posicion inicial");
+		} else if (jugador.equals("B")) {
+			out.println("Jugador " + userB + ", posicion inicial");
+		}
+		
+		String movida = in.readLine();
 
 		return movida;
 	}
 
 	public static String movidaFinal() throws java.io.IOException {
 
-		String movida;
-
-		out.println("Jugador " + jugador + ", posicion final:");
-		movida = in.readLine();
+		if (jugador.equals("A")) {
+			out.println("Jugador " + userA + ", posicion final");
+		} else if (jugador.equals("B")) {
+			out.println("Jugador " + userB + ", posicion final");
+		}
+		
+		String movida = in.readLine();
 
 		return movida;
 	}
 
 	public static boolean moverPieza(String puntoInicial, String puntoFinal) throws java.io.IOException {
 
-		boolean change;
-
-		change = controller.jugar(puntoInicial, puntoFinal, jugador);
+		boolean change =true;
+		if (jugador.equals("A")) {
+			change = controller.jugar(puntoInicial, puntoFinal, userA);
+		} else if (jugador.equals("B")) {
+			change = controller.jugar(puntoInicial, puntoFinal, userB);
+		}
+		
+		
 
 		if (!(controller.validarGanador())) {
 			if (change) {

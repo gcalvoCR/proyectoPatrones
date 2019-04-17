@@ -7,17 +7,13 @@ import proyecto.piezas.Pieza;
 public class Jugador {
 
 	private String nombre, username;
-<<<<<<< HEAD
 	
-	public Jugador() { }
-=======
-	ArrayList<Pieza> piezas;
->>>>>>> origin/master
+	public Jugador() { }	
+
 
 	public Jugador(String pnombre, String pusername) {
 		nombre = pnombre;
 		username = pusername;
-
 	}
 
 	public String getNombre() {
@@ -38,7 +34,36 @@ public class Jugador {
 	
 	public String toString() {
 		
-		return "Jugador: "+ this.getNombre() + " UserName: "+ getUsername();
+		return "Jugador: "+ this.getNombre() + " UserName: "+ getUsername() +"\n";
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jugador other = (Jugador) obj;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
+	
 
 }

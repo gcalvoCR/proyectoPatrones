@@ -16,7 +16,11 @@ public class Damas extends Juego {
 	private Jugador jugadorA = new Jugador("jugadorA", "A");
 	private Jugador jugadorB = new Jugador("jugadorB", "B");
 
-	public Damas() {
+	public Damas(String nombreA, String userA, String nombreB, String userB) {
+		jugadorA.setNombre(nombreA);
+		jugadorA.setUsername(userA);
+		jugadorB.setNombre(nombreB);
+		jugadorB.setUsername(userB);
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
 	}

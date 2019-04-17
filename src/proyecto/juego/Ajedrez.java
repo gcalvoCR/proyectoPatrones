@@ -11,7 +11,7 @@ import proyecto.tablero.Tablero;
 
 public class Ajedrez extends Juego {
 
-	public Ajedrez() {
+	public Ajedrez(String nombreA, String userA, String nombreB, String userB) {
 		tablero = new Tablero(8, 8);
 	}
 

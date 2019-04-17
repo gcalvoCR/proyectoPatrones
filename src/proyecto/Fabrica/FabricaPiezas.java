@@ -13,6 +13,7 @@ import proyecto.piezas.Rey;
 import proyecto.piezas.Torre;
 
 public class FabricaPiezas {
+	
 	public static Pieza getPieza(TipoPiezas target, Jugador pjugador, Colores color) {
 		switch (target) {
 		case TORRE:
