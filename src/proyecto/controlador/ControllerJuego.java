@@ -45,4 +45,5 @@ public class ControllerJuego {
 	public String imprimirTablero() {
 		return juego.toString();
 	}
+
 }

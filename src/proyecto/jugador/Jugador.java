@@ -1,19 +1,16 @@
 package proyecto.jugador;
 
-import java.util.ArrayList;
-
-import proyecto.piezas.Pieza;
-
 public class Jugador {
 
-	private String nombre, username;
-	
-	public Jugador() { }	
+	private String nombre, username, color;
 
+	public Jugador() {
+	}
 
-	public Jugador(String pnombre, String pusername) {
-		nombre = pnombre;
-		username = pusername;
+	public Jugador(String pnombre, String pusername, String pcolor) {
+		setNombre(pnombre);
+		setUsername(pusername);
+		color = pcolor;
 	}
 
 	public String getNombre() {
@@ -31,21 +28,22 @@ public class Jugador {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	public String toString() {
-		
-		return "Jugador: "+ this.getNombre() + " UserName: "+ getUsername() +"\n";
+
+	public String getColor() {
+		return color;
 	}
 
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,14 +54,17 @@ public class Jugador {
 		if (getClass() != obj.getClass())
 			return false;
 		Jugador other = (Jugador) obj;
-		if (username == null) {
-			if (other.username != null)
+		if (color == null) {
+			if (other.color != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!color.equals(other.color))
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Jugador: " + username + "]";
+	}
 
 }
