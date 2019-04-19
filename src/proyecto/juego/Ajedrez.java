@@ -11,15 +11,15 @@ import proyecto.tablero.Tablero;
 
 public class Ajedrez extends Juego {
 
-	public Ajedrez() {
+	public Ajedrez(String nombreA, String userA, String nombreB, String userB) {
 		tablero = new Tablero(8, 8);
 	}
 
 	@Override
 	public void fillBoard() {
 		piezas = new ArrayList<Pieza>();
-		Jugador jugadorA = new Jugador("jugadorA", "A");
-		Jugador jugadorB = new Jugador("jugadorB", "B");
+		Jugador jugadorA = new Jugador("jugadorA", "A", "blanco");
+		Jugador jugadorB = new Jugador("jugadorB", "B", "negro");
 
 		// para jugador A
 		tablero.getCelda(0, 0).setPieza(FabricaPiezas.getPieza(TipoPiezas.TORRE, jugadorA, Colores.BLANCO));

@@ -9,8 +9,8 @@ public class ControllerJuego {
 
 	private Juego juego;
 
-	public ControllerJuego(TipoJuegos pjuego) {
-		this.juego = FabricaJuego.getJuego(pjuego);
+	public ControllerJuego(TipoJuegos pjuego, String nombreA, String userA, String nombreB, String userB) {
+		this.juego = FabricaJuego.getJuego(pjuego, nombreA, userA, nombreB, userB);
 		juego.fillBoard();
 	}
 
@@ -45,4 +45,5 @@ public class ControllerJuego {
 	public String imprimirTablero() {
 		return juego.toString();
 	}
+
 }

@@ -1,19 +1,29 @@
 package proyecto.controlador;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import proyecto.jugador.Jugador;
 import proyecto.persistencia.PersistenciaJugadores;
 
 public class ControllerJugador {
 
-	private PersistenciaJugadores listaJugadores;
+	PersistenciaJugadores listaJugadores = new PersistenciaJugadores();
 
-	public ControllerJugador() {
-		listaJugadores = new PersistenciaJugadores();
+	public boolean registroNuevoJugador(String nombre, String username) throws IOException {
+
+		Jugador jugador = new Jugador(nombre, username, null);
+
+		if (listaJugadores.crearLista(jugador))
+			return true;
+		else
+			return false;
+
 	}
 
-	public void registrarJugador(String pnombre, String pusername) {
-		Jugador nuevoJugador = new Jugador(pnombre, pusername);
-		listaJugadores.addJugador(nuevoJugador);
+	public ArrayList<String> listarJugadores() throws IOException {
+
+		return listaJugadores.leerArchivo();
 
 	}
 

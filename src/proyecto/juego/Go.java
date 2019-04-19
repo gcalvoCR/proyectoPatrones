@@ -1,6 +1,10 @@
 package proyecto.juego;
 
 public class Go extends Juego {
+	
+	public Go(String nombreA, String userA, String nombreB, String userB) {
+		
+	}
 
 	@Override
 	public void fillBoard() {

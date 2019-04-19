@@ -13,10 +13,10 @@ public class Damas extends Juego {
 
 	private Pieza patronDamaBlanca = FabricaPiezas.getPieza(TipoPiezas.DAMA, null, Colores.BLANCO);
 	private Pieza patronDamaNegra = FabricaPiezas.getPieza(TipoPiezas.DAMA, null, Colores.NEGRO);
-	private Jugador jugadorA = new Jugador("jugadorA", "A");
-	private Jugador jugadorB = new Jugador("jugadorB", "B");
 
-	public Damas() {
+	public Damas(String nombreA, String userA, String nombreB, String userB) {
+		jugadorA = new Jugador(nombreA, userA, "blanco");
+		jugadorB = new Jugador(nombreB, userB, "negro");
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
 	}
