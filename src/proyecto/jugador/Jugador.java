@@ -1,40 +1,62 @@
 package proyecto.jugador;
 
+import proyecto.enums.Colores;
+
 public class Jugador {
 
-	private String nombre, username, color;
+	private final String nombre;
+	private final String username;
+	private final Colores color;
+	private final String email;
+	private final String sexo;
 
-	public Jugador() {
-	}
-
-	public Jugador(String pnombre, String pusername, String pcolor) {
-		setNombre(pnombre);
-		setUsername(pusername);
+	private Jugador(String pnombre, String pusername, Colores pcolor, String pemail, String psexo) {
+		nombre = pnombre;
+		username = pusername;
 		color = pcolor;
+		email = pemail;
+		sexo = psexo;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
+	public static class JugadorBuilder {
+		private String nnombre;
+		private String nusername;
+		private Colores ncolor;
+		private String nemail;
+		private String nsexo;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+		public JugadorBuilder() {
 
-	public String getUsername() {
-		return username;
-	}
+		}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+		public JugadorBuilder withNombre(String newNombre) {
+			this.nnombre = newNombre;
+			return this;
+		}
 
-	public String getColor() {
-		return color;
-	}
+		public JugadorBuilder withUsername(String newUsername) {
+			this.nusername = newUsername;
+			return this;
+		}
 
-	public void setColor(String color) {
-		this.color = color;
+		public JugadorBuilder withColor(Colores newColor) {
+			this.ncolor = newColor;
+			return this;
+		}
+
+		public JugadorBuilder withEmail(String newEmail) {
+			this.nemail = newEmail;
+			return this;
+		}
+
+		public JugadorBuilder withSexo(String newSexo) {
+			this.nsexo = newSexo;
+			return this;
+		}
+
+		public Jugador build() {
+			return new Jugador(nnombre, nusername, ncolor, nemail, nsexo);
+		}
 	}
 
 	@Override
@@ -65,6 +87,26 @@ public class Jugador {
 	@Override
 	public String toString() {
 		return "Jugador: " + username + "]";
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public Colores getColor() {
+		return color;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getSexo() {
+		return sexo;
 	}
 
 }

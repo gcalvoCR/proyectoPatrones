@@ -3,6 +3,10 @@ package proyecto.piezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
+import proyecto.validadores.Diagonal;
+import proyecto.validadores.Movimiento;
+import proyecto.validadores.MovimientoPieza;
+import proyecto.validadores.Vertical;
 
 public class Peon extends Pieza {
 
@@ -18,8 +22,11 @@ public class Peon extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		// TODO Auto-generated method stub
-		return false;
+		Movimiento movimiento = new MovimientoPieza();
+		Diagonal validacion1 = new Diagonal(movimiento);
+		Vertical validacion2 = new Vertical(validacion1);
+
+		return validacion2.movimientoValido(initialX, initialY, finalX, finalY);
 	}
 
 }

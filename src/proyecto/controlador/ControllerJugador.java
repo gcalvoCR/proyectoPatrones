@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import proyecto.jugador.Jugador;
+import proyecto.jugador.Jugador.JugadorBuilder;
 import proyecto.persistencia.PersistenciaJugadores;
 
 public class ControllerJugador {
@@ -12,7 +13,10 @@ public class ControllerJugador {
 
 	public boolean registroNuevoJugador(String nombre, String username) throws IOException {
 
-		Jugador jugador = new Jugador(nombre, username, null);
+		JugadorBuilder builder = new JugadorBuilder();
+		builder.withNombre(nombre).withUsername(username);
+		builder.build();
+		Jugador jugador = builder.build();
 
 		if (listaJugadores.crearLista(jugador))
 			return true;

@@ -13,9 +13,7 @@ public class Alfil extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		int diffX = Math.abs(finalX - initialX);
-		int diffY = Math.abs(finalY - initialY);
-		return diffX == diffY;
+		return false;
 	}
 
 	public Jugador getJugador() {

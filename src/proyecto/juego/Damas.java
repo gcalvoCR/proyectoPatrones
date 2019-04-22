@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import proyecto.Fabrica.FabricaPiezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
-import proyecto.jugador.Jugador;
+import proyecto.jugador.Jugador.JugadorBuilder;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
 
@@ -15,8 +15,12 @@ public class Damas extends Juego {
 	private Pieza patronDamaNegra = FabricaPiezas.getPieza(TipoPiezas.DAMA, null, Colores.NEGRO);
 
 	public Damas(String nombreA, String userA, String nombreB, String userB) {
-		jugadorA = new Jugador(nombreA, userA, "blanco");
-		jugadorB = new Jugador(nombreB, userB, "negro");
+		JugadorBuilder builder = new JugadorBuilder();
+		builder.withNombre(nombreA).withUsername(userA).withColor(Colores.BLANCO);
+		jugadorA = builder.build();
+		builder.withNombre(nombreB).withUsername(userB).withColor(Colores.NEGRO);
+		jugadorB = builder.build();
+
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
 	}

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import proyecto.controlador.ControllerJuego;
 import proyecto.controlador.ControllerJugador;
@@ -12,9 +13,9 @@ import proyecto.enums.TipoJuegos;
 
 public class Main {
 
-	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	static PrintStream out = System.out;
-	private static ControllerJuego controller;
+	public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	public static PrintStream out = System.out;
+	private static ControllerJuego controllerJuego;
 	private static ControllerJugador controllerJugador = new ControllerJugador();
 	private static String turno;
 	private static String nombreA, userA, nombreB, userB;
@@ -141,13 +142,19 @@ public class Main {
 
 	private static void listarJugadores() throws IOException {
 
-		ArrayList<String> lista = controllerJugador.listarJugadores();
+		Iterator iterador = controllerJugador.listarJugadores().iterator();
 		int i = 1;
+
 		out.println();
 		out.println("Lista de jugadores registrados:");
 		out.println("********************************");
-		for (String jugador : lista) {
-			out.println(i + ") " + jugador);
+		out.println("   [nombre	usuario]");
+		while (iterador.hasNext()) {
+			Object element = iterador.next();
+			String nombre = ((String) element).substring(0, ((String) element).indexOf(","));
+			String user = ((String) element).substring(((String) element).indexOf(",") + 1);
+
+			out.println(i + ") " + nombre + "	" + user);
 			i++;
 		}
 		out.println("********************************");
@@ -178,21 +185,21 @@ public class Main {
 	}
 
 	private static void jugarGo() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.GO, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.GO, nombreA, userA, nombreB, userB);
 		turno = "blanco";
 		jugar();
 
 	}
 
 	private static void jugarDamas() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.DAMAS, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.DAMAS, nombreA, userA, nombreB, userB);
 		turno = "blanco";
 		jugar();
 
 	}
 
 	private static void jugarAjedrez() throws IOException {
-		controller = new ControllerJuego(TipoJuegos.AJEDREZ, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.AJEDREZ, nombreA, userA, nombreB, userB);
 		turno = "blanco";
 		jugar();
 
@@ -259,23 +266,23 @@ public class Main {
 
 		boolean change = true;
 		if (turno.equals("blanco")) {
-			change = controller.jugar(puntoInicial, puntoFinal, userA);
+			change = controllerJuego.jugar(puntoInicial, puntoFinal, userA);
 		} else if (turno.equals("negro")) {
-			change = controller.jugar(puntoInicial, puntoFinal, userB);
+			change = controllerJuego.jugar(puntoInicial, puntoFinal, userB);
 		}
 
-		if (!(controller.validarGanador())) {
+		if (!(controllerJuego.validarGanador())) {
 			if (change) {
 				changeJugador();
 			} else {
-				System.out.println(controller.getMensaje());
+				System.out.println(controllerJuego.getMensaje());
 				System.out.println((char) 27 + "[33mYELLOW");
 
 			}
 			System.out.println();
 			return false;
 		}
-		System.out.println(controller.getMensaje());
+		System.out.println(controllerJuego.getMensaje());
 		System.out.println();
 		return true;
 	}
@@ -289,6 +296,6 @@ public class Main {
 	}
 
 	public static void imprimirTablero() {
-		out.println(controller.imprimirTablero());
+		out.println(controllerJuego.imprimirTablero());
 	}
 }
