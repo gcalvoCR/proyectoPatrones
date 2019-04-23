@@ -276,7 +276,6 @@ public class Main {
 				changeJugador();
 			} else {
 				System.out.println(controllerJuego.getMensaje());
-				System.out.println((char) 27 + "[33mYELLOW");
 
 			}
 			System.out.println();

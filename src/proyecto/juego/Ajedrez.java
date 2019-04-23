@@ -44,7 +44,7 @@ public class Ajedrez extends Juego {
 			x = xNegras[i];
 			y = yNegras[i];
 			pieza = piezasNegras[i];
-			tablero.getCelda(x, y).setPieza(FabricaPiezas.getPieza(pieza, jugadorA, Colores.NEGRO));
+			tablero.getCelda(x, y).setPieza(FabricaPiezas.getPieza(pieza, jugadorB, Colores.NEGRO));
 		}
 
 		// definicion de posiciones originales para piezas blancas
@@ -80,11 +80,32 @@ public class Ajedrez extends Juego {
 
 	@Override
 	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
-		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
-		tablero.getCelda(initialX, initialY).setPieza(null);
-		piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
-		tablero.getCelda(finalX, finalY).setPieza(pieza);
-		return true;
+		if (validateMovement(jugador, initialX, initialY, finalX, finalY)) {
+			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
+			tablero.getCelda(initialX, initialY).setPieza(null);
+			piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
+			tablero.getCelda(finalX, finalY).setPieza(pieza);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
+
+		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
+
+		// Valida si el jugador mueve sus piezas o las del oponente
+		if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
+			// validacion del movimiento de la pieza en si
+			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
+				return true;
+			}
+			mensaje = "El movimiento no es valido!";
+			return false;
+		}
+		mensaje = "El jugador no puede mover piezas del oponente!";
+		return false;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ public class Horizontal extends DecoradorMovimiento {
 
 	@Override
 	public boolean movimientoValido(int initialX, int initialY, int finalX, int finalY) {
-		if (initialY == finalY) {
+		if (initialX == finalX) {
 			return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && true;
 		}
 		return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && false;

@@ -1,6 +1,6 @@
 package proyecto.validadores;
 
-public class Diagonal extends DecoradorMovimiento {
+public class UnEspacio extends DecoradorMovimiento {
 	Movimiento movimiento;
 
 	@Override
@@ -9,13 +9,13 @@ public class Diagonal extends DecoradorMovimiento {
 		int diffX = Math.abs(finalX - initialX);
 		int diffY = Math.abs(finalY - initialY);
 
-		if (diffX == diffY) {
+		if (diffX <= 1 || diffY <= 1) {
 			return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && true;
 		}
-		return movimiento.movimientoValido(initialX, initialY, finalX, finalY);
+		return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && false;
 	}
 
-	public Diagonal(Movimiento movimiento) {
+	public UnEspacio(Movimiento movimiento) {
 		this.movimiento = movimiento;
 	}
 

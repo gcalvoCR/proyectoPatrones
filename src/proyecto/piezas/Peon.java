@@ -6,6 +6,7 @@ import proyecto.jugador.Jugador;
 import proyecto.validadores.Diagonal;
 import proyecto.validadores.Movimiento;
 import proyecto.validadores.MovimientoPieza;
+import proyecto.validadores.UnEspacio;
 import proyecto.validadores.Vertical;
 
 public class Peon extends Pieza {
@@ -23,10 +24,10 @@ public class Peon extends Pieza {
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
 		Movimiento movimiento = new MovimientoPieza();
-		Diagonal validacion1 = new Diagonal(movimiento);
-		Vertical validacion2 = new Vertical(validacion1);
-
-		return validacion2.movimientoValido(initialX, initialY, finalX, finalY);
+		Movimiento validacion1 = new Vertical(movimiento);
+		Movimiento validacion2 = new Diagonal(validacion1);
+		Movimiento validacion3 = new UnEspacio(validacion2);
+		return validacion3.movimientoValido(initialX, initialY, finalX, finalY);
 	}
 
 }

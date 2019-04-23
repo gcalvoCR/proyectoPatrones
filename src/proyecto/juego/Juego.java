@@ -18,6 +18,8 @@ public abstract class Juego {
 
 	public abstract boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY);
 
+	public abstract boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY);
+
 	public abstract boolean validateWinner();
 
 	public String getMensaje() {

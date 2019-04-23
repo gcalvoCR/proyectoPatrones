@@ -79,13 +79,12 @@ public class Damas extends Juego {
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
 			return true;
-		} else {
-			mensaje = "El movimiento no es valido!";
 		}
 		return false;
 	}
 
-	private boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
+	@Override
+	public boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
 
 		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
 
@@ -109,6 +108,7 @@ public class Damas extends Juego {
 				if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 2) {
 					Pieza piezaIntermedia = tablero.getCelda(piezaIntermediaX, piezaIntermediaY).getPieza();
 					if (piezaIntermedia.equals(piezaPosicionInicial)) {
+						mensaje = "El movimiento no es valido!";
 						return false;
 					}
 					tablero.getCelda(piezaIntermediaX, piezaIntermediaY).setPieza(null);
@@ -116,9 +116,8 @@ public class Damas extends Juego {
 					return true;
 				}
 			}
-		} else {
-			mensaje = "El jugador no puede mover piezas del oponente!";
 		}
+		mensaje = "El jugador no puede mover piezas del oponente!";
 		return false;
 	}
 

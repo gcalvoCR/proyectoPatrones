@@ -1,9 +1,9 @@
 package proyecto.juego;
 
 public class Go extends Juego {
-	
+
 	public Go(String nombreA, String userA, String nombreB, String userB) {
-		
+
 	}
 
 	@Override
@@ -15,6 +15,11 @@ public class Go extends Juego {
 	@Override
 	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
 		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
 		return false;
 	}
 
