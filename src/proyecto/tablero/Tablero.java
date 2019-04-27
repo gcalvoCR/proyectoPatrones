@@ -62,9 +62,7 @@ public class Tablero {
 		return celdas[x][y];
 	}
 	
-//	public Celda getCelda(int x, int y) {
-//		return celdas[x][y];
-//	}
+
 	
 
 }
