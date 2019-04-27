@@ -22,9 +22,9 @@ public class Torre extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		Movimiento movimiento = new MovimientoPieza();
-		Movimiento validacion1 = new Vertical(movimiento);
-		Movimiento validacion2 = new Horizontal(validacion1);
+		Movimiento movimiento = new MovimientoPieza();// Si esta dentro del tablero
+		Movimiento validacion1 = new Vertical(movimiento);// y si se mueve vertical
+		Movimiento validacion2 = new Horizontal(validacion1); // o si se mueve horizontal
 		return validacion2.movimientoValido(initialX, initialY, finalX, finalY);
 	}
 
