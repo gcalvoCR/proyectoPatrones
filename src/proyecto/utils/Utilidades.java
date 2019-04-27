@@ -22,9 +22,8 @@ public class Utilidades {
 		case 'H':
 			return 7;
 		default:
-			break;
+			return -1;
 		}
-		return -1;
 	}
 
 }

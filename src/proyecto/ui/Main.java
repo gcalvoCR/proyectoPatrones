@@ -115,7 +115,6 @@ public class Main {
 		controller = new ControllerJuego(TipoJuegos.DAMAS);
 		jugador = "A";
 		jugar();
-
 	}
 
 	private static void jugarAjedrez() throws IOException {
@@ -133,13 +132,13 @@ public class Main {
 
 		do {
 			imprimirTablero();
-			puntoInicial = movidaInicial();
+			puntoInicial = movidaInicial(); //El jugador selecciona ficha
 			salir = verificarSalir(puntoInicial);
 			if (salir) {
 				break;
 			}
-			puntoFinal = movidaFinal();
-			salir = verificarSalir(puntoFinal);
+			puntoFinal = movidaFinal(); //El jugador selecciona posicion final
+			salir = verificarSalir(puntoFinal); 
 			if (salir) {
 				break;
 			}
@@ -184,7 +183,7 @@ public class Main {
 
 		if (!(controller.validarGanador())) {
 			if (change) {
-				changeJugador();
+				changeJugador(); //Cambia al siguiente jugador
 			} else {
 				System.out.println(controller.getMensaje());
 				System.out.println();

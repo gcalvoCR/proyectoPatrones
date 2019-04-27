@@ -59,13 +59,37 @@ public class Ajedrez extends Juego {
 
 	@Override
 	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
-		Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
-		tablero.getCelda(initialX, initialY).setPieza(null);
-		piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
-		tablero.getCelda(finalX, finalY).setPieza(pieza);
-		return true;
-	}
+		
+		// Si el movimiento es valido mueve pieza y deja null la anterior
+		if (validateMovement(jugador, initialX, initialY, finalX, finalY)) {
+			
+			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
+			tablero.getCelda(initialX, initialY).setPieza(null);
+			tablero.getCelda(finalX, finalY).setPieza(pieza);
+			return true;
+			
+		} else {
+			mensaje = "El movimiento no es valido!";
+		}
+		return false;
 
+	}
+	
+	private boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY) {
+
+		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
+
+		if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {	//Validate correct player
+			if ((finalY < 8 && finalY >= 0) && (finalX < 8 && finalX >= 0)) {	//Validate only into table positions
+				if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {	//Validate selected piece
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public String toString() {
 

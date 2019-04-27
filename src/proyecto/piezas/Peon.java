@@ -18,7 +18,28 @@ public class Peon extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		// TODO Auto-generated method stub
+		
+		if (getColor().equals(Colores.BLANCO) && (finalX > initialX)) { //Validate piece white and go down
+			
+			if (finalY == initialY) { //Validate move direct
+				
+				if ((initialX == 1) && (finalX > 1 && finalX < 4)) { //Validate only first movement jump 1 or 2 step
+					return true;	
+				} else if (initialX > 1 && finalX == (initialX + 1)) { //Validate only 1 step
+					return true;
+				}
+				
+			} else if (finalY == (initialY + 1) || finalY == (initialY - 1)) { //Validate move diagonal
+				
+				if (finalX == (initialX + 1)) { //Validate only 1 move
+					return true;
+				}
+			}
+			
+		} else if (getColor().equals(Colores.NEGRO) && (finalX < initialX)){ //Validate piece black and go up
+			return true;
+		}
+		
 		return false;
 	}
 
