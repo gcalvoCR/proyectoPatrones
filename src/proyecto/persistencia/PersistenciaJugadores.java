@@ -30,25 +30,8 @@ public class PersistenciaJugadores {
         } catch (Exception e) {
             e.getStackTrace();
             return false;
-    }
+        }
 				
-		
-		
-		
-		
-//		FileWriter flwriter = null;
-//	
-//		flwriter = new FileWriter("tx/texto.txt");
-//		BufferedWriter bfwriter = new BufferedWriter(flwriter);
-//		bfwriter.write(jugador.getNombre() + "," + jugador.getUsername() + "\n");
-//		
-//		bfwriter.close();
-//		//System.out.println("Jugador creado satisfactoriamente");
-// 
-//		if (flwriter != null) {
-//			flwriter.close();
-//		}
-//		return true;
 	}
 	
 	public ArrayList<String> leerArchivo() throws IOException {
@@ -68,50 +51,6 @@ public class PersistenciaJugadores {
         } catch (IOException e) {
             throw e;
         }		
-		
-	
-		
-//		File file = new File("tx/texto.txt");
-//		ArrayList listaJugadores= new ArrayList ();	
-//		Scanner scanner;
-//	
-//			scanner = new Scanner(file);
-//			while (scanner.hasNextLine()) {
-//				String linea = scanner.nextLine();
-//				Scanner delimitar = new Scanner(linea);
-//					
-//				delimitar.useDelimiter("\\s*,\\s*");
-//				Jugador j= new Jugador();
-//				j.setNombre(delimitar.next());
-//				j.setUsername(delimitar.next());
-//				listaJugadores.add(j);
-//			}
-//	
-//			scanner.close();
-//
-//		return listaJugadores;
 	}
-	
-	
-
-	public void agregarJugador(ArrayList<Jugador> lista) throws IOException {
-		FileWriter flwriter = null;
-		//además de la ruta del archivo recibe un parámetro de tipo boolean, que le indican que se va añadir más registros 
-			flwriter = new FileWriter("tx/texto.txt", true);
-			BufferedWriter bfwriter = new BufferedWriter(flwriter);
-			for (Jugador jugador : lista) {
-			
-				bfwriter.write(jugador.getNombre() + "," + jugador.getUsername() + "\n");
-			}
-			bfwriter.close();
-			System.out.println("Jugador agregado satisfactoriamente");
- 
-			if (flwriter != null) {
-				flwriter.close();
-				
-			}
-		
-	}	
-
 
 }
