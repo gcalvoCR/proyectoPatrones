@@ -2,10 +2,13 @@ package proyecto.juego;
 
 import java.util.ArrayList;
 
+import proyecto.Fabrica.FabricaPersistencia;
 import proyecto.Fabrica.FabricaPiezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
+import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador.JugadorBuilder;
+import proyecto.persistencia.Plataforma;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
 
@@ -23,8 +26,13 @@ public class Damas extends Juego {
 
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
+		communicationHandler();
 	}
 
+	public void communicationHandler() {
+		Plataforma persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
+		
+	}
 	@Override
 	public void fillBoard() {
 
@@ -78,6 +86,7 @@ public class Damas extends Juego {
 			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
+			persistenciaMovimientos.guardarDatoDamas(initialX + initialY+ ","+ finalX + finalY);
 			return true;
 		}
 		return false;

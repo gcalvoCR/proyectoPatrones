@@ -1,15 +1,20 @@
 package proyecto.controlador;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
+import proyecto.Fabrica.FabricaPersistencia;
+import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador;
 import proyecto.jugador.Jugador.JugadorBuilder;
-import proyecto.persistencia.PersistenciaJugadores;
+import proyecto.persistencia.Plataforma;
+
 
 public class ControllerJugador {
 
-	PersistenciaJugadores listaJugadores = new PersistenciaJugadores();
+
+	Plataforma listaJugadores = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_JUGADOR);
 
 	public boolean registroNuevoJugador(String nombre, String username) throws IOException {
 
@@ -18,7 +23,7 @@ public class ControllerJugador {
 		builder.build();
 		Jugador jugador = builder.build();
 
-		if (listaJugadores.crearLista(jugador))
+		if (listaJugadores.guardarDato(jugador))
 			return true;
 		else
 			return false;
@@ -27,7 +32,7 @@ public class ControllerJugador {
 
 	public ArrayList<String> listarJugadores() throws IOException {
 
-		return listaJugadores.leerArchivo();
+		return listaJugadores.leerDato();
 
 	}
 

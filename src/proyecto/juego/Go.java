@@ -29,4 +29,10 @@ public class Go extends Juego {
 		return false;
 	}
 
+	@Override
+	public void communicationHandler() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

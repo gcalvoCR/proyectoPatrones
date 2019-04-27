@@ -42,6 +42,7 @@ public class Main {
 		out.println("4.  Registrar jugador");
 		out.println("5.  Enlistar jugadores");
 		out.println("6.  Elegir jugadores");
+		out.println("7.  Reproducir partida");
 		out.println("0.  Salir");
 		out.println("********************************");
 		out.println();
@@ -90,6 +91,11 @@ public class Main {
 		case 6:
 			listarJugadores();
 			elegirJugador();
+			break;
+			
+		case 7:
+			
+			
 			break;
 
 		case 0:

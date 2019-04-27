@@ -12,13 +12,13 @@ import java.util.Scanner;
 
 import proyecto.jugador.Jugador;
 
-public class PersistenciaJugadores {
+public class PersistenciaJugadores extends Plataforma{
 
 	
-	public boolean crearLista(Jugador jugador) throws IOException {
+	public boolean guardarDato(Jugador jugador) {
 		
 		try {
-            File path = new File("./test.txt");
+            File path = new File("./Jugador.txt");
             FileWriter output = new FileWriter(path, true);
             BufferedWriter writer = new BufferedWriter(output);
 
@@ -34,11 +34,12 @@ public class PersistenciaJugadores {
 				
 	}
 	
-	public ArrayList<String> leerArchivo() throws IOException {
+	@Override
+	public ArrayList<String> leerDato() throws IOException {
 		
 		ArrayList<String> data = new ArrayList<>();
         try {
-            File path = new File("test.txt");
+            File path = new File("Jugador.txt");
             FileReader reader = new FileReader(path);
             BufferedReader buffer = new BufferedReader(reader);
             String datos;
@@ -51,6 +52,36 @@ public class PersistenciaJugadores {
         } catch (IOException e) {
             throw e;
         }		
+	}
+
+	@Override
+	protected void openConnection() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void sendData(String Txt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected ArrayList<String> getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void closeConnection() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void sendDataJugador(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
