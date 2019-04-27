@@ -107,6 +107,17 @@ public class Ajedrez extends Juego {
 		mensaje = "El jugador no puede mover piezas del oponente!";
 		return false;
 	}
+	
+//	Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
+//
+//	if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {	//Validate correct player
+//		if ((finalY < 8 && finalY >= 0) && (finalX < 8 && finalX >= 0)) {	//Validate only into table positions
+//			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {	//Validate selected piece
+//				return true;
+//			}
+//		}
+//	}
+//	return false;
 
 	@Override
 	public String toString() {
