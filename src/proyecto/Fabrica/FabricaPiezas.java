@@ -30,8 +30,8 @@ public class FabricaPiezas {
 			return new Peon(pjugador, color);
 		case DAMA:
 			return new Dama(pjugador, color);
-		case DAMAREINA:
-			throw new RuntimeException("Not implemented yet");
+//		case DAMAREINA:
+//			throw new RuntimeException("Not implemented yet");
 		default:
 			throw new RuntimeException("Unknown piece");
 		}

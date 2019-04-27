@@ -228,7 +228,7 @@ public class Ajedrez extends Juego {
 
 	}
 
-	private String getPiezasblancas(TipoPiezas tipo) {
+	public static String getPiezasblancas(TipoPiezas tipo) {
 		switch (tipo) {
 		case REY:
 			return "♔";
@@ -247,7 +247,7 @@ public class Ajedrez extends Juego {
 		}
 	}
 
-	private String getPiezasNegras(TipoPiezas tipo) {
+	public static String getPiezasNegras(TipoPiezas tipo) {
 		switch (tipo) {
 		case REY:
 			return "♚";
