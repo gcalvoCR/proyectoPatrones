@@ -3,9 +3,9 @@ package proyecto.piezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
-import proyecto.validadores.Diagonal;
 import proyecto.validadores.Movimiento;
 import proyecto.validadores.MovimientoPieza;
+import proyecto.validadores.UnicamenteDiagonal;
 
 public class Alfil extends Pieza {
 
@@ -16,8 +16,8 @@ public class Alfil extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		Movimiento movimiento = new MovimientoPieza();
-		Movimiento validacion1 = new Diagonal(movimiento);
+		Movimiento movimiento = new MovimientoPieza();// Si pieza dentro de tablero
+		Movimiento validacion1 = new UnicamenteDiagonal(movimiento);// y movimiento diagonal
 		return validacion1.movimientoValido(initialX, initialY, finalX, finalY);
 	}
 

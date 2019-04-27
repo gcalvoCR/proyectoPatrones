@@ -23,11 +23,10 @@ public class Reina extends Pieza {
 
 	@Override
 	public boolean isValidMovement(int initialX, int initialY, int finalX, int finalY) {
-		Movimiento movimiento = new MovimientoPieza();
-		Movimiento validacion1 = new Vertical(movimiento);
-		Movimiento validacion2 = new Horizontal(validacion1);
-		Movimiento validacion3 = new Diagonal(validacion2);
+		Movimiento movimiento = new MovimientoPieza();// Si esta dentro del tablero
+		Movimiento validacion1 = new Vertical(movimiento);// y si se mueve vertical
+		Movimiento validacion2 = new Diagonal(validacion1);// o si se mueve diagonal
+		Movimiento validacion3 = new Horizontal(validacion2); // o si se mueve horizontal
 		return validacion3.movimientoValido(initialX, initialY, finalX, finalY);
 	}
-
 }

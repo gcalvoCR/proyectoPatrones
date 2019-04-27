@@ -289,8 +289,8 @@ public class Main {
 	public static void changeJugador() {
 		if (turno.equals("blanco")) {
 			turno = "negro";
-		} else if (turno.equals("blanco")) {
-			turno = "negro";
+		} else if (turno.equals("negro")) {
+			turno = "blanco";
 		}
 	}
 

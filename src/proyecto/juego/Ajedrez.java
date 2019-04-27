@@ -107,6 +107,37 @@ public class Ajedrez extends Juego {
 		mensaje = "El jugador no puede mover piezas del oponente!";
 		return false;
 	}
+	
+//	Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
+//
+//	if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {	//Validate correct player
+//		if ((finalY < 8 && finalY >= 0) && (finalX < 8 && finalX >= 0)) {	//Validate only into table positions
+//			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {	//Validate selected piece
+//				return true;
+//			}
+//		}
+//	} 
+//	return false;
+	
+//	if (getColor().equals(Colores.BLANCO) && (finalX > initialX)) { //Validate piece white and go down
+//		
+//		if (finalY == initialY) { //Validate move direct
+//			
+//			if ((initialX == 1) && (finalX > 1 && finalX < 4)) { //Validate only first movement jump 1 or 2 step
+//				return true;	
+//			} else if (initialX > 1 && finalX == (initialX + 1)) { //Validate only 1 step
+//				return true;
+//			}
+//			
+//		} else if (finalY == (initialY + 1) || finalY == (initialY - 1)) { //Validate move diagonal
+//			
+//			if (finalX == (initialX + 1)) { //Validate only 1 move
+//				return true;
+//			}
+//		}
+//		
+//	}
+	
 
 	@Override
 	public String toString() {
