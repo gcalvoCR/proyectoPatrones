@@ -116,9 +116,7 @@ public class Ajedrez extends Juego {
 //				return true;
 //			}
 //		}
-//	}
-	
-	
+//	} Hola
 //	return false;
 
 	@Override
