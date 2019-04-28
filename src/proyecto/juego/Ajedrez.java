@@ -1,5 +1,6 @@
 package proyecto.juego;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import proyecto.Fabrica.FabricaPersistencia;
@@ -34,7 +35,12 @@ public class Ajedrez extends Juego {
 
 	@Override
 	public void communicationHandler() {
-		persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
+		try {
+			persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

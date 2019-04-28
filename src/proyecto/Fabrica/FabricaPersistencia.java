@@ -1,5 +1,7 @@
 package proyecto.Fabrica;
 
+import java.io.IOException;
+
 import proyecto.enums.TipoPlataforma;
 import proyecto.persistencia.BaseDatos;
 import proyecto.persistencia.PersistenciaJugadores;
@@ -9,7 +11,7 @@ import proyecto.persistencia.Plataforma;
 
 public class FabricaPersistencia {
 	
-	public static Plataforma getPlatform(TipoPlataforma tipoPlataforma) {
+	public static Plataforma getPlatform(TipoPlataforma tipoPlataforma) throws IOException {
 		switch (tipoPlataforma) {
 		case TXT_JUGADOR:
 			return new PersistenciaJugadores();

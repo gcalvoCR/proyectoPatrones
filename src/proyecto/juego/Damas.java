@@ -1,5 +1,6 @@
 package proyecto.juego;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import proyecto.Fabrica.FabricaPersistencia;
@@ -30,7 +31,12 @@ public class Damas extends Juego {
 	}
 
 	public void communicationHandler() {
-		Plataforma persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
+		try {
+			Plataforma persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	@Override
