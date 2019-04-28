@@ -1,21 +1,17 @@
-package proyecto.validadores;
+package proyecto.validadorPiezas;
 
-public class Diagonal extends DecoradorMovimiento {
+public class DosEspacios extends DecoradorMovimiento {
 	Movimiento movimiento;
 
 	@Override
 	public boolean movimientoValido(int initialX, int initialY, int finalX, int finalY) {
-
-		int diffX = Math.abs(finalX - initialX);
-		int diffY = Math.abs(finalY - initialY);
-
-		if (diffX == diffY) {
+		if (((initialX == 1) && (finalX > 1 && finalX < 4)) || ((initialX == 6) && (finalX < 6 && finalX > 3))) {
 			return movimiento.movimientoValido(initialX, initialY, finalX, finalY) || true;
 		}
 		return movimiento.movimientoValido(initialX, initialY, finalX, finalY) || false;
 	}
 
-	public Diagonal(Movimiento movimiento) {
+	public DosEspacios(Movimiento movimiento) {
 		this.movimiento = movimiento;
 	}
 

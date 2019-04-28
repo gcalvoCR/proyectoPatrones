@@ -1,5 +1,7 @@
 package proyecto.juego;
 
+import proyecto.enums.TipoPlataforma;
+
 public class Go extends Juego {
 
 	public Go(String nombreA, String userA, String nombreB, String userB) {
@@ -30,9 +32,9 @@ public class Go extends Juego {
 	}
 
 	@Override
-	public void communicationHandler() {
+	public void communicationHandler(TipoPlataforma target) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

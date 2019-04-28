@@ -3,9 +3,9 @@ package proyecto.piezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
-import proyecto.validadores.EspecialCaballo;
-import proyecto.validadores.Movimiento;
-import proyecto.validadores.MovimientoPieza;
+import proyecto.validadorPiezas.EspecialCaballo;
+import proyecto.validadorPiezas.Movimiento;
+import proyecto.validadorPiezas.MovimientoPieza;
 
 public class Caballo extends Pieza {
 

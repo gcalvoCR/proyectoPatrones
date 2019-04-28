@@ -1,4 +1,4 @@
-package proyecto.validadores;
+package proyecto.validadorPiezas;
 
 public class Vertical extends DecoradorMovimiento {
 	Movimiento movimiento;

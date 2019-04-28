@@ -2,6 +2,7 @@ package proyecto.juego;
 
 import java.util.ArrayList;
 
+import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador;
 import proyecto.persistencia.Plataforma;
 import proyecto.piezas.Pieza;
@@ -15,7 +16,6 @@ public abstract class Juego {
 	protected Jugador jugadorA;
 	protected Jugador jugadorB;
 	protected Plataforma persistenciaMovimientos;
-	
 
 	public abstract void fillBoard();
 
@@ -24,12 +24,11 @@ public abstract class Juego {
 	public abstract boolean validateMovement(String jugador, int initialX, int initialY, int finalX, int finalY);
 
 	public abstract boolean validateWinner();
-	
-	public abstract void communicationHandler();
+
+	public abstract void communicationHandler(TipoPlataforma target);
 
 	public String getMensaje() {
 		return mensaje;
 	}
-	
 
 }

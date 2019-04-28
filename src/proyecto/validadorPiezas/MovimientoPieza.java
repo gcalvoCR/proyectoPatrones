@@ -1,4 +1,4 @@
-package proyecto.validadores;
+package proyecto.validadorPiezas;
 
 public class MovimientoPieza extends Movimiento {
 

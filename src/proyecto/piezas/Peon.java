@@ -3,12 +3,12 @@ package proyecto.piezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
-import proyecto.validadores.Diagonal;
-import proyecto.validadores.DosEspacios;
-import proyecto.validadores.Movimiento;
-import proyecto.validadores.MovimientoPieza;
-import proyecto.validadores.UnEspacio;
-import proyecto.validadores.Vertical;
+import proyecto.validadorPiezas.Diagonal;
+import proyecto.validadorPiezas.DosEspacios;
+import proyecto.validadorPiezas.Movimiento;
+import proyecto.validadorPiezas.MovimientoPieza;
+import proyecto.validadorPiezas.UnEspacio;
+import proyecto.validadorPiezas.Vertical;
 
 public class Peon extends Pieza {
 

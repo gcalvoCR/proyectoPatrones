@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import proyecto.Fabrica.FabricaPersistencia;
 import proyecto.Fabrica.FabricaPiezas;
 import proyecto.enums.Colores;
+import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPiezas;
 import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador.JugadorBuilder;
-import proyecto.persistencia.Plataforma;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
 
@@ -26,13 +26,8 @@ public class Damas extends Juego {
 
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
-		communicationHandler();
 	}
 
-	public void communicationHandler() {
-		Plataforma persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
-		
-	}
 	@Override
 	public void fillBoard() {
 
@@ -86,7 +81,8 @@ public class Damas extends Juego {
 			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
-			persistenciaMovimientos.guardarDatoDamas(initialX + initialY+ ","+ finalX + finalY);
+			persistenciaMovimientos.guardarMovimiento(initialX + " " + initialY + "," + finalX + " " + finalY,
+					TipoJuegos.DAMAS);
 			return true;
 		}
 		return false;
@@ -97,36 +93,42 @@ public class Damas extends Juego {
 
 		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
 
-		// Valida si el jugador mueve sus piezas o las del oponente
-		if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
-			// validacion del movimiento de la pieza en si
-			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
+		if (piezaPosicionInicial != null) {
+			// Valida si el jugador mueve sus piezas o las del oponente
+			if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
+				// validacion del movimiento de la pieza en si
+				if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
 
-				Pieza piezaPosicionFinal = tablero.getCelda(finalX, finalY).getPieza();
+					Pieza piezaPosicionFinal = tablero.getCelda(finalX, finalY).getPieza();
 
-				// Validacion respecto a las demas piezas
-				// Si donde no tiene que saltar
-				if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 1) {
-					return true;
-				}
-
-				int piezaIntermediaX = (finalX + initialX) / 2;
-				int piezaIntermediaY = (finalY + initialY) / 2;
-
-				// Si tiene que saltar
-				if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 2) {
-					Pieza piezaIntermedia = tablero.getCelda(piezaIntermediaX, piezaIntermediaY).getPieza();
-					if (piezaIntermedia.equals(piezaPosicionInicial)) {
-						mensaje = "El movimiento no es valido!";
-						return false;
+					// Validacion respecto a las demas piezas
+					// Si donde no tiene que saltar
+					if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 1) {
+						return true;
 					}
-					tablero.getCelda(piezaIntermediaX, piezaIntermediaY).setPieza(null);
-					piezas.remove(piezaIntermedia);
-					return true;
+
+					int piezaIntermediaX = (finalX + initialX) / 2;
+					int piezaIntermediaY = (finalY + initialY) / 2;
+
+					// Si tiene que saltar
+					if (piezaPosicionFinal == null && Math.abs(finalX - initialX) == 2) {
+						Pieza piezaIntermedia = tablero.getCelda(piezaIntermediaX, piezaIntermediaY).getPieza();
+						if (piezaIntermedia.equals(piezaPosicionInicial)) {
+							mensaje = "El movimiento no es valido!";
+							return false;
+						}
+						tablero.getCelda(piezaIntermediaX, piezaIntermediaY).setPieza(null);
+						piezas.remove(piezaIntermedia);
+						return true;
+					}
 				}
+				mensaje = "El movimiento no es valido!";
+				return false;
 			}
+			mensaje = "El jugador no puede mover piezas del oponente!";
+			return false;
 		}
-		mensaje = "El jugador no puede mover piezas del oponente!";
+		mensaje = "Debe seleccionar una pieza valida!";
 		return false;
 	}
 
@@ -205,6 +207,13 @@ public class Damas extends Juego {
 			mensaje = "jugador A (blanco) gano!";
 		}
 		return win;
+
+	}
+
+	@Override
+	public void communicationHandler(TipoPlataforma target) {
+		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
+		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.DAMAS);
 
 	}
 

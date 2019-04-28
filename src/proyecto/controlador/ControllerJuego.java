@@ -2,6 +2,7 @@ package proyecto.controlador;
 
 import proyecto.Fabrica.FabricaJuego;
 import proyecto.enums.TipoJuegos;
+import proyecto.enums.TipoPlataforma;
 import proyecto.juego.Juego;
 import proyecto.utils.Utilidades;
 
@@ -9,9 +10,11 @@ public class ControllerJuego {
 
 	private Juego juego;
 
-	public ControllerJuego(TipoJuegos pjuego, String nombreA, String userA, String nombreB, String userB) {
+	public ControllerJuego(TipoJuegos pjuego, String nombreA, String userA, String nombreB, String userB,
+			TipoPlataforma target) {
 		this.juego = FabricaJuego.getJuego(pjuego, nombreA, userA, nombreB, userB);
 		juego.fillBoard();
+		communicationHandler(target);
 	}
 
 	public boolean jugar(String puntoInicial, String puntoFinal, String jugador) {
@@ -32,6 +35,10 @@ public class ControllerJuego {
 
 		return juego.movePiece(jugador, initialX, initialY, finalX, finalY);
 
+	}
+
+	public void communicationHandler(TipoPlataforma target) {
+		juego.communicationHandler(target);
 	}
 
 	public boolean validarGanador() {

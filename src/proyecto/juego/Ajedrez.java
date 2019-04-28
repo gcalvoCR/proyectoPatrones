@@ -5,39 +5,28 @@ import java.util.ArrayList;
 import proyecto.Fabrica.FabricaPersistencia;
 import proyecto.Fabrica.FabricaPiezas;
 import proyecto.enums.Colores;
+import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPiezas;
 import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador.JugadorBuilder;
-import proyecto.persistencia.PersistenciaMovimientos;
-import proyecto.persistencia.Plataforma;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
 
 public class Ajedrez extends Juego {
-	
 
 	public Ajedrez(String nombreA, String userA, String nombreB, String userB) {
-		
-		
+
 		JugadorBuilder builder = new JugadorBuilder();
 		builder.withNombre(nombreA).withUsername(userA).withColor(Colores.BLANCO);
 		jugadorA = builder.build();
 		builder.withNombre(nombreB).withUsername(userB).withColor(Colores.NEGRO);
 		jugadorB = builder.build();
-		
 
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
-		communicationHandler();
-		
+
 	}
 
-	@Override
-	public void communicationHandler() {
-		persistenciaMovimientos = FabricaPersistencia.getPlatform(TipoPlataforma.TXT_MOVIMIENTO);
-		
-	}
-	
 	@Override
 	public void fillBoard() {
 
@@ -100,7 +89,8 @@ public class Ajedrez extends Juego {
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
-			persistenciaMovimientos.guardarDato(initialX+ " "+ initialY+","+ finalX+" " +finalY);
+			persistenciaMovimientos.guardarMovimiento(initialX + " " + initialY + "," + finalX + " " + finalY,
+					TipoJuegos.AJEDREZ);
 			return true;
 		}
 		return false;
@@ -123,37 +113,6 @@ public class Ajedrez extends Juego {
 		mensaje = "El jugador no puede mover piezas del oponente!";
 		return false;
 	}
-	
-//	Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
-//
-//	if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {	//Validate correct player
-//		if ((finalY < 8 && finalY >= 0) && (finalX < 8 && finalX >= 0)) {	//Validate only into table positions
-//			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {	//Validate selected piece
-//				return true;
-//			}
-//		}
-//	} 
-//	return false;
-	
-//	if (getColor().equals(Colores.BLANCO) && (finalX > initialX)) { //Validate piece white and go down
-//		
-//		if (finalY == initialY) { //Validate move direct
-//			
-//			if ((initialX == 1) && (finalX > 1 && finalX < 4)) { //Validate only first movement jump 1 or 2 step
-//				return true;	
-//			} else if (initialX > 1 && finalX == (initialX + 1)) { //Validate only 1 step
-//				return true;
-//			}
-//			
-//		} else if (finalY == (initialY + 1) || finalY == (initialY - 1)) { //Validate move diagonal
-//			
-//			if (finalX == (initialX + 1)) { //Validate only 1 move
-//				return true;
-//			}
-//		}
-//		
-//	}
-	
 
 	@Override
 	public String toString() {
@@ -196,10 +155,10 @@ public class Ajedrez extends Juego {
 
 			for (int y = 0; y < tablero.getColumns(); y++) {
 				if (tablero.getCelda(x, y).getPieza() == null) {
-					output.append(" | ");
+					output.append("  | ");
 				} else {
 					Pieza pieza = tablero.getCelda(x, y).getPieza();
-					output.append("  " + getSymbol(pieza) + "  | ");
+					output.append(" " + getSymbol(pieza) + " |");
 				}
 			}
 			output.append("\n");
@@ -282,5 +241,10 @@ public class Ajedrez extends Juego {
 		}
 	}
 
+	@Override
+	public void communicationHandler(TipoPlataforma target) {
+		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
+		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.AJEDREZ);
+	}
 
 }
