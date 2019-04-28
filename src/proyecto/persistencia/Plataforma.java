@@ -1,47 +1,20 @@
 package proyecto.persistencia;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
+import proyecto.enums.TipoJuegos;
 import proyecto.jugador.Jugador;
 
-public abstract class Plataforma {
-	
-	public boolean guardarDato(String movimientos) {
-		openConnection();
-		sendData(movimientos);
-		closeConnection();
-		return true;
-	}
-	public void guardarDatoDamas(String movimientos) {
-		openConnection();
-		sendData(movimientos);
-		closeConnection();		
-	}
-	
-	public boolean guardarDato(Jugador jugador) {
-		openConnection();
-		sendDataJugador(jugador);
-		closeConnection();	
-		return true;
-	}
+public interface Plataforma {
 
-	public ArrayList<String> leerDato() throws IOException {
-		openConnection();
-		ArrayList<String> data = getData();
-		closeConnection();
-		return data;
-	}
+	public boolean guardarMovimiento(String texto, TipoJuegos target);
 
-	protected abstract void openConnection();
+	ArrayList<String> leerMovimiento(TipoJuegos target);
 
-	protected abstract void sendData(String Txt);
-	
-	protected abstract void sendDataJugador(Jugador jugador);
+	public boolean guardarJugador(Jugador jugador);
 
-	protected abstract ArrayList<String> getData();
+	ArrayList<String> leerJugador();
 
-	protected abstract void closeConnection();
-
+	void eliminarPersistencia(TipoJuegos target);
 
 }

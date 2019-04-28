@@ -3,9 +3,9 @@ package proyecto.piezas;
 import proyecto.enums.Colores;
 import proyecto.enums.TipoPiezas;
 import proyecto.jugador.Jugador;
-import proyecto.validadores.Movimiento;
-import proyecto.validadores.MovimientoPieza;
-import proyecto.validadores.UnicamenteDiagonal;
+import proyecto.validadorPiezas.Movimiento;
+import proyecto.validadorPiezas.MovimientoPieza;
+import proyecto.validadorPiezas.UnicamenteDiagonal;
 
 public class Alfil extends Pieza {
 

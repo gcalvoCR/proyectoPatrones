@@ -2,44 +2,39 @@ package proyecto.persistencia;
 
 import java.util.ArrayList;
 
+import proyecto.enums.TipoJuegos;
 import proyecto.jugador.Jugador;
 
-public class BaseDatos extends Plataforma{
-	
-	protected void openConnection() {
-		System.out.println("Abriendo conexion...");
+public class BaseDatos implements Plataforma {
 
-	}
-
-	protected void sendData(String Txt) {
-		try {
-			System.out.println("Guardando datos...");
-			Thread.sleep(3000);
-			System.out.println("Los datos se guardaron con éxito");
-		} catch (InterruptedException e) {
-			throw new RuntimeException("Hubo un error al guardar datos");
-		}
-
-	}
-
-	protected ArrayList<String> getData() {
-		ArrayList<String> data = new ArrayList<String>();
-		data.add("Listado de datos");
-		return data;
-
-	}
-
-	protected void closeConnection() {
-		System.out.println("Cierre de conexion");
+	@Override
+	public boolean guardarMovimiento(String texto, TipoJuegos target) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
-	protected void sendDataJugador(Jugador jugador) {
+	public ArrayList<String> leerMovimiento(TipoJuegos target) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	
-	
+	@Override
+	public boolean guardarJugador(Jugador jugador) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<String> leerJugador() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminarPersistencia(TipoJuegos target) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

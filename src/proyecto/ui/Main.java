@@ -10,6 +10,7 @@ import java.util.Iterator;
 import proyecto.controlador.ControllerJuego;
 import proyecto.controlador.ControllerJugador;
 import proyecto.enums.TipoJuegos;
+import proyecto.enums.TipoPlataforma;
 
 public class Main {
 
@@ -42,7 +43,8 @@ public class Main {
 		out.println("4.  Registrar jugador");
 		out.println("5.  Enlistar jugadores");
 		out.println("6.  Elegir jugadores");
-		out.println("7.  Reproducir partida");
+		out.println("7.  Bajar partida");
+		out.println("7.  Reproducir partida (en memoria)");
 		out.println("0.  Salir");
 		out.println("********************************");
 		out.println();
@@ -92,10 +94,9 @@ public class Main {
 			listarJugadores();
 			elegirJugador();
 			break;
-			
+
 		case 7:
-			
-			
+
 			break;
 
 		case 0:
@@ -191,21 +192,21 @@ public class Main {
 	}
 
 	private static void jugarGo() throws IOException {
-		controllerJuego = new ControllerJuego(TipoJuegos.GO, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.GO, nombreA, userA, nombreB, userB, TipoPlataforma.TXT);
 		turno = "blanco";
 		jugar();
 
 	}
 
 	private static void jugarDamas() throws IOException {
-		controllerJuego = new ControllerJuego(TipoJuegos.DAMAS, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.DAMAS, nombreA, userA, nombreB, userB, TipoPlataforma.TXT);
 		turno = "blanco";
 		jugar();
 
 	}
 
 	private static void jugarAjedrez() throws IOException {
-		controllerJuego = new ControllerJuego(TipoJuegos.AJEDREZ, nombreA, userA, nombreB, userB);
+		controllerJuego = new ControllerJuego(TipoJuegos.AJEDREZ, nombreA, userA, nombreB, userB, TipoPlataforma.TXT);
 		turno = "blanco";
 		jugar();
 

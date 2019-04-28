@@ -1,6 +1,6 @@
-package proyecto.validadores;
+package proyecto.validadorPiezas;
 
-public class EspecialCaballo extends DecoradorMovimiento {
+public class UnicamenteDiagonal extends DecoradorMovimiento {
 	Movimiento movimiento;
 
 	@Override
@@ -9,13 +9,13 @@ public class EspecialCaballo extends DecoradorMovimiento {
 		int diffX = Math.abs(finalX - initialX);
 		int diffY = Math.abs(finalY - initialY);
 
-		if ((diffX == 2 && diffY == 1) || (diffX == 1 && diffY == 2)) {
+		if (diffX == diffY) {
 			return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && true;
 		}
-		return false;
+		return movimiento.movimientoValido(initialX, initialY, finalX, finalY) && false;
 	}
 
-	public EspecialCaballo(Movimiento movimiento) {
+	public UnicamenteDiagonal(Movimiento movimiento) {
 		this.movimiento = movimiento;
 	}
 
