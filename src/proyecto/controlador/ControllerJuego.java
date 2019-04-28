@@ -1,9 +1,13 @@
 package proyecto.controlador;
 
+import java.util.ArrayList;
+
 import proyecto.Fabrica.FabricaJuego;
 import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPlataforma;
 import proyecto.juego.Juego;
+import proyecto.persistencia.PersistenciaTXT;
+import proyecto.persistencia.Plataforma;
 import proyecto.utils.Utilidades;
 
 public class ControllerJuego {
@@ -53,4 +57,8 @@ public class ControllerJuego {
 		return juego.toString();
 	}
 
+	public ArrayList<String> getMovimientosPartida(TipoJuegos target) {
+		Plataforma persistencia = new PersistenciaTXT();
+		return persistencia.leerMovimiento(target);
+	}
 }

@@ -213,7 +213,7 @@ public class Damas extends Juego {
 	@Override
 	public void communicationHandler(TipoPlataforma target) {
 		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
-		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.DAMAS);
+		// persistenciaMovimientos.eliminarPersistencia(TipoJuegos.DAMAS);
 
 	}
 

@@ -11,6 +11,7 @@ import proyecto.controlador.ControllerJuego;
 import proyecto.controlador.ControllerJugador;
 import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPlataforma;
+import proyecto.utils.Utilidades;
 
 public class Main {
 
@@ -21,7 +22,7 @@ public class Main {
 	private static String turno;
 	private static String nombreA, userA, nombreB, userB;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		int opc;
 		boolean noSalir = true;
 
@@ -43,8 +44,8 @@ public class Main {
 		out.println("4.  Registrar jugador");
 		out.println("5.  Enlistar jugadores");
 		out.println("6.  Elegir jugadores");
-		out.println("7.  Bajar partida");
-		out.println("7.  Reproducir partida (en memoria)");
+		out.println("7.  Reproducir partida (ajedrez)");
+		out.println("8.  Reproducir partida (damas)");
 		out.println("0.  Salir");
 		out.println("********************************");
 		out.println();
@@ -61,7 +62,7 @@ public class Main {
 		return opcion;
 	}
 
-	static boolean ejecutarAccion(int popcion) throws java.io.IOException {
+	static boolean ejecutarAccion(int popcion) throws java.io.IOException, InterruptedException {
 
 		boolean noSalir = true;
 
@@ -70,11 +71,13 @@ public class Main {
 		case 1:
 			validarCredenciales();
 			jugarAjedrez();
+			bajarPartida(TipoJuegos.AJEDREZ);
 			break;
 
 		case 2:
 			validarCredenciales();
 			jugarDamas();
+			bajarPartida(TipoJuegos.DAMAS);
 			break;
 
 		case 3:
@@ -96,7 +99,12 @@ public class Main {
 			break;
 
 		case 7:
-
+			validarCredenciales();
+			reproducirPartida(TipoJuegos.AJEDREZ);
+			break;
+		case 8:
+			validarCredenciales();
+			reproducirPartida(TipoJuegos.DAMAS);
 			break;
 
 		case 0:
@@ -114,6 +122,33 @@ public class Main {
 			break;
 		}
 		return noSalir;
+	}
+
+	private static void reproducirPartida(TipoJuegos target) throws InterruptedException {
+		controllerJuego = new ControllerJuego(target, nombreA, userA, nombreB, userB, TipoPlataforma.TXT);
+		ArrayList<String> listaMovimiento = controllerJuego.getMovimientosPartida(target);
+		turno = "blanco";
+		for (String x : listaMovimiento) {
+			int xi = Integer.parseInt(x.substring(0, 1));
+			int yi = Integer.parseInt(x.substring(2, 3));
+			int xf = Integer.parseInt(x.substring(4, 5));
+			int yf = Integer.parseInt(x.substring(6, 7));
+			char x1 = Utilidades.getCharFromInt(xi);
+			char x2 = Utilidades.getCharFromInt(xf);
+			String mi = x1 + "" + yi;
+			String mf = x2 + "" + yf;
+			imprimirTablero();
+
+			if (turno.equals("blanco")) {
+				controllerJuego.jugar(mi, mf, userA);
+				out.println("Movimiento:" + mi + " a " + mf + " de jugador 1");
+			} else if (turno.equals("negro")) {
+				controllerJuego.jugar(mi, mf, userB);
+				out.println("Movimiento:" + mi + " a " + mf + " de jugador 2");
+			}
+			changeJugador();
+			Thread.sleep(3000);
+		}
 	}
 
 	private static void validarCredenciales() {
@@ -303,5 +338,28 @@ public class Main {
 
 	public static void imprimirTablero() {
 		out.println(controllerJuego.imprimirTablero());
+	}
+
+	public static void bajarPartida(TipoJuegos target) throws NumberFormatException, IOException {
+		System.out.println("Desea descargar la partida? 1.Si - 2.No");
+		int opt = Integer.parseInt(in.readLine());
+		if (opt == 1) {
+			imprimirMovimientos(target);
+		}
+
+	}
+
+	public static void imprimirMovimientos(TipoJuegos target) {
+		ArrayList<String> listaMovimiento = controllerJuego.getMovimientosPartida(target);
+
+		out.println();
+		out.println("Partida jugada:");
+		out.println("************");
+		out.println("[movimiento inicial - movimiento final]");
+		for (String movimiento : listaMovimiento) {
+			out.println(movimiento.toString());
+		}
+		out.println("************");
+		out.println();
 	}
 }

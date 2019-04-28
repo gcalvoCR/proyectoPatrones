@@ -11,6 +11,7 @@ import proyecto.enums.TipoPlataforma;
 import proyecto.jugador.Jugador.JugadorBuilder;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
+import proyecto.validadorTablero.ValidadorTableroAjedrez;
 
 public class Ajedrez extends Juego {
 
@@ -24,7 +25,7 @@ public class Ajedrez extends Juego {
 
 		tablero = new Tablero(8, 8);
 		piezas = new ArrayList<Pieza>();
-
+		validadorTablero = new ValidadorTableroAjedrez();
 	}
 
 	@Override
@@ -101,16 +102,25 @@ public class Ajedrez extends Juego {
 
 		Pieza piezaPosicionInicial = tablero.getCelda(initialX, initialY).getPieza();
 
-		// Valida si el jugador mueve sus piezas o las del oponente
-		if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
-			// validacion del movimiento de la pieza en si
-			if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
-				return true;
+		if (piezaPosicionInicial != null) {
+			// Valida si el jugador mueve sus piezas o las del oponente
+			if (jugador.equals(piezaPosicionInicial.getJugador().getUsername())) {
+				// validacion del movimiento de la pieza en si
+				if (piezaPosicionInicial.isValidMovement(initialX, initialY, finalX, finalY)) {
+					// validacion de piezas dentro del tablero
+					if (validadorTablero.validateMovement(tablero, initialX, initialY, finalX, finalY)) {
+						return true;
+					}
+					mensaje = "El movimiento no es valido!";
+					return false;
+				}
+				mensaje = "El movimiento de la pieza en si no es valido!";
+				return false;
 			}
-			mensaje = "El movimiento no es valido!";
+			mensaje = "El jugador no puede mover piezas del oponente!";
 			return false;
 		}
-		mensaje = "El jugador no puede mover piezas del oponente!";
+		mensaje = "Debe seleccionar una pieza valida!";
 		return false;
 	}
 
@@ -155,10 +165,10 @@ public class Ajedrez extends Juego {
 
 			for (int y = 0; y < tablero.getColumns(); y++) {
 				if (tablero.getCelda(x, y).getPieza() == null) {
-					output.append("  | ");
+					output.append("   |");
 				} else {
 					Pieza pieza = tablero.getCelda(x, y).getPieza();
-					output.append(" " + getSymbol(pieza) + " |");
+					output.append(" " + getSymbol(pieza) + "  |");
 				}
 			}
 			output.append("\n");
@@ -206,17 +216,17 @@ public class Ajedrez extends Juego {
 	public static String getPiezasblancas(TipoPiezas tipo) {
 		switch (tipo) {
 		case REY:
-			return "♔";
+			return "\u2654";
 		case REINA:
-			return "♕";
+			return "\u2655";
 		case TORRE:
-			return "♖";
+			return "\u2656";
 		case ALFIL:
-			return "♗";
+			return "\u2657";
 		case CABALLO:
-			return "♘";
+			return "\u2658";
 		case PEON:
-			return "♙";
+			return "\u2659";
 		default:
 			return "";
 		}
@@ -225,17 +235,17 @@ public class Ajedrez extends Juego {
 	public static String getPiezasNegras(TipoPiezas tipo) {
 		switch (tipo) {
 		case REY:
-			return "♚";
+			return "\u265A";
 		case REINA:
-			return "♛";
+			return "\u265B";
 		case TORRE:
-			return "♜";
+			return "\u265C";
 		case ALFIL:
-			return "♝";
+			return "\u265D";
 		case CABALLO:
-			return "♞";
+			return "\u265E";
 		case PEON:
-			return "♟";
+			return "\u265F";
 		default:
 			return "";
 		}
@@ -244,7 +254,7 @@ public class Ajedrez extends Juego {
 	@Override
 	public void communicationHandler(TipoPlataforma target) {
 		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
-		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.AJEDREZ);
+		// persistenciaMovimientos.eliminarPersistencia(TipoJuegos.AJEDREZ);
 	}
 
 }
