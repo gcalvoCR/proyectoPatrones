@@ -27,4 +27,28 @@ public class Utilidades {
 		return -1;
 	}
 
+	public static char getCharFromInt(int numero) {
+		switch (numero) {
+		case 0:
+			return 'A';
+		case 1:
+			return 'B';
+		case 2:
+			return 'C';
+		case 3:
+			return 'D';
+		case 4:
+			return 'E';
+		case 5:
+			return 'F';
+		case 6:
+			return 'G';
+		case 7:
+			return 'H';
+		default:
+			break;
+		}
+		return 'Z';
+	}
+
 }

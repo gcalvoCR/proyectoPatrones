@@ -48,7 +48,7 @@ public class PersistenciaTXT implements Plataforma {
 	@Override
 	public ArrayList<String> leerMovimiento(TipoJuegos target) {
 		try {
-			File path;
+			File path = null;
 			switch (target) {
 			case AJEDREZ:
 				path = new File("./ajedrez.txt");
@@ -61,7 +61,6 @@ public class PersistenciaTXT implements Plataforma {
 				break;
 			}
 			ArrayList<String> data = new ArrayList<>();
-			path = new File("movimientos.txt");
 			FileReader reader = new FileReader(path);
 			BufferedReader buffer = new BufferedReader(reader);
 			String datos;

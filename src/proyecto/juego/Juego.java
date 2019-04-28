@@ -7,6 +7,7 @@ import proyecto.jugador.Jugador;
 import proyecto.persistencia.Plataforma;
 import proyecto.piezas.Pieza;
 import proyecto.tablero.Tablero;
+import proyecto.validadorTablero.ValidadorTablero;
 
 public abstract class Juego {
 
@@ -16,6 +17,7 @@ public abstract class Juego {
 	protected Jugador jugadorA;
 	protected Jugador jugadorB;
 	protected Plataforma persistenciaMovimientos;
+	protected ValidadorTablero validadorTablero;
 
 	public abstract void fillBoard();
 
@@ -30,5 +32,4 @@ public abstract class Juego {
 	public String getMensaje() {
 		return mensaje;
 	}
-
 }
