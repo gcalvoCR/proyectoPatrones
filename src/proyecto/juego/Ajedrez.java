@@ -84,14 +84,13 @@ public class Ajedrez extends Juego {
 	}
 
 	@Override
-	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
+	public boolean jugarPieza(String jugador, int initialX, int initialY, int finalX, int finalY) {
 		if (validateMovement(jugador, initialX, initialY, finalX, finalY)) {
 			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			piezas.remove(tablero.getCelda(finalX, finalY).getPieza());
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
-			persistenciaMovimientos.guardarMovimiento(initialX + " " + initialY + "," + finalX + " " + finalY,
-					TipoJuegos.AJEDREZ);
+			guardarDatos(initialX + " " + initialY + "," + finalX + " " + finalY);
 			return true;
 		}
 		return false;
@@ -252,9 +251,21 @@ public class Ajedrez extends Juego {
 	}
 
 	@Override
-	public void communicationHandler(TipoPlataforma target) {
+	public void initializeCommunicationHandler(TipoPlataforma target) {
 		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
-		// persistenciaMovimientos.eliminarPersistencia(TipoJuegos.AJEDREZ);
+
+	}
+
+	@Override
+	public void guardarDatos(String datos) {
+		persistenciaMovimientos.guardarMovimiento(datos, TipoJuegos.AJEDREZ);
+
+	}
+
+	@Override
+	public void eliminarDatos(TipoPlataforma target) {
+		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.AJEDREZ);
+
 	}
 
 }

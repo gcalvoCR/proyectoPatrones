@@ -33,12 +33,12 @@ public class ValidadorTableroAjedrez implements ValidadorTablero {
 		if (initialX == finalX && diffY > 1) {
 			for (int i = 1; i < diffY; i++) {
 				if (finalX > initialX) {
-					if (tablero.getCelda(initialX + i, initialY) != null) {
+					if (tablero.getCelda(initialX, initialY + i).getPieza() != null) {
 						cont++;
 					}
 				}
 				if (finalX < initialX) {
-					if (tablero.getCelda(initialX - i, initialY) != null) {
+					if (tablero.getCelda(initialX, initialY - i).getPieza() != null) {
 						cont++;
 					}
 				}
@@ -54,12 +54,12 @@ public class ValidadorTableroAjedrez implements ValidadorTablero {
 		if (initialY == finalY && diffX > 1) {
 			for (int i = 1; i < diffX; i++) {
 				if (finalX > initialX) {
-					if (tablero.getCelda(initialX, initialY + i) != null) {
+					if (tablero.getCelda(initialX + i, initialY).getPieza() != null) {
 						cont++;
 					}
 				}
 				if (finalX < initialX) {
-					if (tablero.getCelda(initialX, initialY - i) != null) {
+					if (tablero.getCelda(initialX - i, initialY).getPieza() != null) {
 						cont++;
 					}
 				}
@@ -76,22 +76,22 @@ public class ValidadorTableroAjedrez implements ValidadorTablero {
 		if (diffX == diffY && diffY > 1) {
 			for (int i = 1; i < diffX; i++) {
 				if (finalX > initialX && finalY > initialX) {
-					if (tablero.getCelda(initialX + i, initialY + i) != null) {
+					if (tablero.getCelda(initialX + i, initialY + i).getPieza() != null) {
 						cont++;
 					}
 				}
 				if (finalX > initialX && finalY < initialX) {
-					if (tablero.getCelda(initialX + i, initialY - i) != null) {
+					if (tablero.getCelda(initialX + i, initialY - i).getPieza() != null) {
 						cont++;
 					}
 				}
 				if (finalX < initialX && finalY > initialX) {
-					if (tablero.getCelda(initialX - i, initialY + i) != null) {
+					if (tablero.getCelda(initialX - i, initialY + i).getPieza() != null) {
 						cont++;
 					}
 				}
 				if (finalX < initialX && finalY < initialX) {
-					if (tablero.getCelda(initialX - i, initialY - i) != null) {
+					if (tablero.getCelda(initialX - i, initialY - i).getPieza() != null) {
 						cont++;
 					}
 				}

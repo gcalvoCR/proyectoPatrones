@@ -74,15 +74,14 @@ public class Damas extends Juego {
 	}
 
 	@Override
-	public boolean movePiece(String jugador, int initialX, int initialY, int finalX, int finalY) {
+	public boolean jugarPieza(String jugador, int initialX, int initialY, int finalX, int finalY) {
 
 		// Si el movimiento es valido mueve pieza
 		if (validateMovement(jugador, initialX, initialY, finalX, finalY)) {
 			Pieza pieza = tablero.getCelda(initialX, initialY).getPieza();
 			tablero.getCelda(initialX, initialY).setPieza(null);
 			tablero.getCelda(finalX, finalY).setPieza(pieza);
-			persistenciaMovimientos.guardarMovimiento(initialX + " " + initialY + "," + finalX + " " + finalY,
-					TipoJuegos.DAMAS);
+			guardarDatos(initialX + " " + initialY + "," + finalX + " " + finalY);
 			return true;
 		}
 		return false;
@@ -211,9 +210,19 @@ public class Damas extends Juego {
 	}
 
 	@Override
-	public void communicationHandler(TipoPlataforma target) {
+	public void initializeCommunicationHandler(TipoPlataforma target) {
 		persistenciaMovimientos = FabricaPersistencia.getPlatform(target);
-		// persistenciaMovimientos.eliminarPersistencia(TipoJuegos.DAMAS);
+	}
+
+	@Override
+	public void guardarDatos(String datos) {
+		persistenciaMovimientos.guardarMovimiento(datos, TipoJuegos.DAMAS);
+
+	}
+
+	@Override
+	public void eliminarDatos(TipoPlataforma target) {
+		persistenciaMovimientos.eliminarPersistencia(TipoJuegos.DAMAS);
 
 	}
 

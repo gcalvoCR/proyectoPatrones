@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 import proyecto.controlador.ControllerJuego;
 import proyecto.controlador.ControllerJugador;
+import proyecto.enums.TipoAcciones;
 import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPlataforma;
 import proyecto.utils.Utilidades;
@@ -128,6 +129,9 @@ public class Main {
 		controllerJuego = new ControllerJuego(target, nombreA, userA, nombreB, userB, TipoPlataforma.TXT);
 		ArrayList<String> listaMovimiento = controllerJuego.getMovimientosPartida(target);
 		turno = "blanco";
+		out.println("Reproduccion automatica de partida!!!");
+		out.println();
+		Thread.sleep(3000);
 		for (String x : listaMovimiento) {
 			int xi = Integer.parseInt(x.substring(0, 1));
 			int yi = Integer.parseInt(x.substring(2, 3));
@@ -137,17 +141,16 @@ public class Main {
 			char x2 = Utilidades.getCharFromInt(xf);
 			String mi = x1 + "" + yi;
 			String mf = x2 + "" + yf;
-			imprimirTablero();
-
 			if (turno.equals("blanco")) {
-				controllerJuego.jugar(mi, mf, userA);
+				controllerJuego.jugar(mi, mf, userA, TipoAcciones.REPRODUCIR);
 				out.println("Movimiento:" + mi + " a " + mf + " de jugador 1");
 			} else if (turno.equals("negro")) {
-				controllerJuego.jugar(mi, mf, userB);
+				controllerJuego.jugar(mi, mf, userB, TipoAcciones.REPRODUCIR);
 				out.println("Movimiento:" + mi + " a " + mf + " de jugador 2");
 			}
+			imprimirTablero();
 			changeJugador();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		}
 	}
 
@@ -308,9 +311,9 @@ public class Main {
 
 		boolean change = true;
 		if (turno.equals("blanco")) {
-			change = controllerJuego.jugar(puntoInicial, puntoFinal, userA);
+			change = controllerJuego.jugar(puntoInicial, puntoFinal, userA, TipoAcciones.JUGAR);
 		} else if (turno.equals("negro")) {
-			change = controllerJuego.jugar(puntoInicial, puntoFinal, userB);
+			change = controllerJuego.jugar(puntoInicial, puntoFinal, userB, TipoAcciones.JUGAR);
 		}
 
 		if (!(controllerJuego.validarGanador())) {
