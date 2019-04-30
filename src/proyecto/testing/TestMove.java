@@ -11,6 +11,7 @@ import proyecto.Fabrica.FabricaPiezas;
 import proyecto.controlador.ControllerJuego;
 import proyecto.controlador.ControllerJugador;
 import proyecto.enums.Colores;
+import proyecto.enums.TipoAcciones;
 import proyecto.enums.TipoJuegos;
 import proyecto.enums.TipoPiezas;
 import proyecto.enums.TipoPlataforma;
@@ -47,7 +48,7 @@ public class TestMove {
 		ControllerJuego pruebaJuego = new ControllerJuego(tipoJuego.AJEDREZ, jugadorNombre, jugadorUser, jugadorNombre2,
 				jugadorUser2, TipoPlataforma.TXT);
 
-		Boolean pruebaMetodo = pruebaJuego.jugar(puntoInicioPrueba, puntoFinalPrueba, jugador);
+		Boolean pruebaMetodo = pruebaJuego.jugar(puntoInicioPrueba, puntoFinalPrueba, jugador, TipoAcciones.JUGAR);
 
 		assertEquals(true, pruebaMetodo, "Error");
 
@@ -67,7 +68,7 @@ public class TestMove {
 		ControllerJuego pruebaJuego = new ControllerJuego(tipoJuego.DAMAS, jugadorNombre, jugadorUser, jugadorNombre2,
 				jugadorUser2, TipoPlataforma.TXT);
 
-		Boolean pruebaMetodo = pruebaJuego.jugar(puntoInicioPrueba, puntoFinalPrueba, jugador);
+		Boolean pruebaMetodo = pruebaJuego.jugar(puntoInicioPrueba, puntoFinalPrueba, jugador, TipoAcciones.JUGAR);
 
 		assertEquals(true, pruebaMetodo, "Error");
 
